@@ -5,7 +5,8 @@ import {
 	Switch
 } from 'react-router-dom';
 import './App.less';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
 
 // 
 export default class App extends React.Component {
@@ -15,12 +16,14 @@ export default class App extends React.Component {
 
 	//
 	render() {
+		// <Router>
+		// <Router basename="/radar">
 		return (
-			// <Router basename="/radar">
 			<Router>
                 <div className="AppFontFamily">
                     <Switch>
-                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/" component={Login}/>
+                        <Route exact path="/index" component={Home}/>
                     </Switch>
                 </div>
            </Router>
