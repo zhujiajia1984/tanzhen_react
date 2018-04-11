@@ -50,7 +50,7 @@ module.exports = {
         new ExtractTextPlugin('style.css'),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'tanzhen',
+            title: 'radar',
             template: './src/html/index.html',
         }),
         new webpack.optimize.CommonsChunkPlugin({
