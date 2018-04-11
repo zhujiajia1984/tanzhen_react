@@ -6,15 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: ['whatwg-fetch', './src/index.js'],
-        vendor: ['react', 'react-dom', 'react-router-dom']
+        main: ['./src/index.js'],
+        vendor: ['react', 'react-dom']
     },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-    },
-    externals: {
-        'qq': 'qq',
     },
     module: {
         rules: [{
@@ -44,21 +41,21 @@ module.exports = {
             use: [{
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'cloudac/assets/images/'
+                    outputPath: 'assets/images/'
                 }
             }]
         }, ]
     },
     plugins: [
         new ExtractTextPlugin('style.css'),
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'tanzhen',
+            template: './src/html/index.html',
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             minChunks: Infinity,
         }),
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            title: 'cloudAC',
-            template: './src/TemplateHtml/index.html',
-        })
     ]
 }
