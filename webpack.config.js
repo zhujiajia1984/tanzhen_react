@@ -6,8 +6,8 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        main: ['./src/index.js'],
-        vendor: ['react', 'react-dom']
+        main: ['whatwg-fetch', './src/index.js'],
+        vendor: ['react', 'react-dom', 'react-router-dom']
     },
     output: {
         filename: '[name].bundle.js',
