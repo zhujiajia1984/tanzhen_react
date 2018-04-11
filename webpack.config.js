@@ -2,13 +2,15 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        main: ['./src/index.js']
+        main: ['./src/index.js'],
+        vendor: ['react', 'react-dom']
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
@@ -48,6 +50,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'tanzhen',
             template: './src/html/index.html',
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            minChunks: Infinity,
+        }),
     ]
 }
