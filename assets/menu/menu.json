@@ -1,0 +1,13 @@
+[
+{
+	"icon": "home",
+	"type": "main",
+	"name": "系统首页",
+	"path": "/index"
+},
+{
+	"icon": "tool",
+	"type": "main",
+	"name": "雷达管理",
+	"path": "/device"
+}]
