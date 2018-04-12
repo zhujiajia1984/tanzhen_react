@@ -30,7 +30,7 @@ module.exports = {
                         loader: "less-loader",
                         options: {
                             modifyVars: {
-                                '@primary-color': '#1DA57A',
+                                '@primary-color': '#52c41a',
                             }
                         }
                     }
@@ -44,6 +44,9 @@ module.exports = {
                     outputPath: 'assets/images/'
                 }
             }]
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader'
         }, ]
     },
     plugins: [

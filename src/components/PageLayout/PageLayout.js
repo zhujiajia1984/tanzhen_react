@@ -2,24 +2,40 @@ import React from 'react';
 import { Layout, Menu, Icon, Breadcrumb } from 'antd';
 import './PageLayout.less';
 import imgLogo from '../../../assets/images/logo.png';
+import PropTypes from 'prop-types';
+import menu from '../../../assets/menu/menu.json';
+import { Link } from 'react-router-dom';
 
 // const
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
+const Item = Menu.Item;
+
+
 
 //
 export default class PageLayout extends React.Component {
 	constructor(props) {
 		super(props);
+		// read collapsed
+		let collapsedInit = localStorage.getItem('collapsed');
+		if (!collapsedInit) {
+			collapsedInit = false;
+		} else {
+			collapsedInit = (collapsedInit == "true") ? true : false;
+		}
+		// state 
 		this.state = {
-			collapsed: false,
+			collapsed: collapsedInit,
 		};
 	}
 
 	// 侧边栏伸缩
 	onCollapse(collapsed) {
 		this.setState({ collapsed: collapsed });
+		localStorage.setItem('collapsed', collapsed);
 	}
+
 
 	//
 	render() {
@@ -29,33 +45,47 @@ export default class PageLayout extends React.Component {
 					collapsible={true}
 					// breakpoint="md"
 					className="siderBar"
-					onCollapse={this.onCollapse.bind(this)}
 					collapsed={this.state.collapsed}
-					// trigger={null}
+					onCollapse={this.onCollapse.bind(this)}
 				>
 					<div className="logo">
 						<img src={imgLogo} style={{width: 32, height: 32}} />
-						{
-							(this.state.collapsed)?'':<h1>Wise Radar</h1>
-						}
+						<h1>Wise Radar</h1>
 					</div>
-					<Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{padding: '16px 0px'}}>
-						<Menu.Item key="1">
-			              <Icon type="pie-chart" />
-			              <span>Option 1</span>
-			            </Menu.Item>
-			            <SubMenu
-			              key="sub1"
-			              title={<span><Icon type="user" /><span>User</span></span>}
-			            >
-			              <Menu.Item key="3">Tom</Menu.Item>
-			              <Menu.Item key="4">Bill</Menu.Item>
-			              <Menu.Item key="5">Alex</Menu.Item>
-			            </SubMenu>
+					<Menu theme="dark" 
+						defaultSelectedKeys={this.props.selMenu}
+						defaultOpenKeys={this.props.openMenu}
+						mode="inline"
+						style={{padding: '16px 0px'}}
+					>
+						{
+							menu.map((item)=>{
+								return (item.type=="main")
+								?<Item key={item.name}>
+									<Link to={item.path}>
+										<Icon type={item.icon} />
+										<span>{item.name}</span>
+									</Link>
+								</Item>
+								:<SubMenu key={item.name}
+									title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}
+								>
+									{
+										item.items.map((item)=>{
+											return <Item key={item.name}>
+													<Link to={item.path}>
+														<span>{item.name}</span>
+													</Link>
+												</Item>
+										})
+									}
+								</SubMenu>
+							})
+						}
 					</Menu>
 				</Sider>
 				<Layout>
-					<Header style={{ background: '#fff', padding: 0 }}>
+					<Header style={{ background: '#fff', padding: 0, zIndex: 10}}>
 						abc
 					</Header>
 					<Content style={{ margin: '0 16px' }}>
@@ -75,3 +105,12 @@ export default class PageLayout extends React.Component {
 		);
 	}
 }
+
+// 传入参数值定义
+PageLayout.propTypes = {
+	selMenu: PropTypes.array.isRequired,
+	openMenu: PropTypes.array,
+};
+PageLayout.defaultProps = {
+	selMenu: ['系统首页'],
+};

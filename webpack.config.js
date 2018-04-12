@@ -50,6 +50,9 @@ module.exports = {
                     outputPath: 'assets/images/'
                 }
             }]
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader'
         }, ]
     },
     plugins: [

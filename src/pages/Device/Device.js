@@ -2,7 +2,7 @@ import React from 'react';
 import PageLayout from '../../components/PageLayout/PageLayout';
 
 //
-export default class Home extends React.Component {
+export default class Device extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<PageLayout	selMenu={['系统首页']}
+				<PageLayout	selMenu={['雷达管理']}
 				>
 				</PageLayout>
 			</div>

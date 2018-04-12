@@ -2,11 +2,12 @@ import React from 'react';
 import {
 	BrowserRouter as Router,
 	Route,
-	Switch
+	Redirect
 } from 'react-router-dom';
 import './App.less';
-import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import Home from './pages/Home/Home';
+import Device from './pages/Device/Device';
 
 // 
 export default class App extends React.Component {
@@ -17,16 +18,15 @@ export default class App extends React.Component {
 	//
 	render() {
 		// <Router>
-		// <Router basename="/radar">
+		// <Router basename="/radar/shop">
 		return (
 			<Router>
-                <div className="AppFontFamily">
-                    <Switch>
-                        <Route exact path="/" component={Login}/>
-                        <Route exact path="/index" component={Home}/>
-                    </Switch>
-                </div>
-           </Router>
+				<div className="AppFontFamily">
+					<Route exact path="/" render={()=>(<Redirect to="/index" />)} />
+					<Route exact path="/index" component={Home} />
+					<Route exact path="/device" component={Device} />
+				</div>
+			</Router>
 		);
 	}
 }
