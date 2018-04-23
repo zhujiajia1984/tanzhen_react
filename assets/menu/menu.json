@@ -1,8 +1,8 @@
 [
 {
-	"icon": "home",
+	"icon": "dashboard",
 	"type": "main",
-	"name": "系统首页",
+	"name": "实时雷达",
 	"path": "/index"
 },
 {
@@ -10,4 +10,16 @@
 	"type": "main",
 	"name": "雷达管理",
 	"path": "/device"
+},
+{
+	"icon": "line-chart",
+	"type": "sub",
+	"name": "数据统计",
+	"items": [
+	{
+		"icon": "tool",
+		"type": "main",
+		"name": "访客统计",
+		"path": "/device"
+	}]
 }]

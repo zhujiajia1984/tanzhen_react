@@ -13,6 +13,7 @@ export default class Device extends React.Component {
 			<div>
 				<PageLayout	selMenu={['雷达管理']}
 				>
+					<span>device</span>
 				</PageLayout>
 			</div>
 		);

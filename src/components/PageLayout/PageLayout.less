@@ -26,4 +26,32 @@
 			}
 		}
 	}
+	&>.ant-layout {
+		&>.topNavi {
+			background-color: white;
+			z-index: 10;
+			padding: 0px 12px 0px 24px;
+			display: flex;
+			&>.topLeft {
+				height: 100%;
+				span {
+					font-size: 20px;
+					font-weight: 500;
+					color: rgba(0, 0, 0, .85);
+				}
+			}
+			&>.topRight {
+				height: 100%;
+				flex: 1;
+				display: flex;
+				flex-direction: row-reverse;
+				&>.dropdown-link {
+					&:hover {
+						cursor: pointer;
+						background-color: #e6f7ff;
+					}
+				}
+			}
+		}
+	}
 }

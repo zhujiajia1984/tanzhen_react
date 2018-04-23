@@ -1,5 +1,11 @@
 import React from 'react';
-import { Layout, Menu, Icon, Breadcrumb } from 'antd';
+import {
+	Layout,
+	Menu,
+	Icon,
+	Dropdown,
+	Avatar
+} from 'antd';
 import './PageLayout.less';
 import imgLogo from '../../../assets/images/logo.png';
 import PropTypes from 'prop-types';
@@ -10,8 +16,6 @@ import { Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const Item = Menu.Item;
-
-
 
 //
 export default class PageLayout extends React.Component {
@@ -85,17 +89,31 @@ export default class PageLayout extends React.Component {
 					</Menu>
 				</Sider>
 				<Layout>
-					<Header style={{ background: '#fff', padding: 0, zIndex: 10}}>
-						abc
-					</Header>
-					<Content style={{ margin: '0 16px' }}>
-						<Breadcrumb style={{ margin: '16px 0' }}>
-							<Breadcrumb.Item>User</Breadcrumb.Item>
-							<Breadcrumb.Item>Bill</Breadcrumb.Item>
-						</Breadcrumb>
-						<div style={{ padding: 24, background: '#fff', minHeight: 360, marginBottom: 500}}>
-							Bill is a cat.
+					<Header className="topNavi">
+						<div className="topLeft">
+							<span>{this.props.selMenu}</span>
 						</div>
+						<div className="topRight">
+							<Dropdown overlay={
+								<Menu>
+									<Item style={{width: 160}} key="profile">
+										<Icon type="user" style={{marginRight: 8}}/>个人中心
+									</Item>
+									<Menu.Divider />
+									<Item style={{width: 160}} key="logout">
+										<Icon type="logout" style={{marginRight: 8}}/>退出登录
+									</Item>
+								</Menu>
+							}>
+								<span className="dropdown-link" style={{padding: "0px 12px"}}>
+									<Avatar size="small" icon="user" />
+									<span style={{marginLeft: 5}}>微信昵称</span>
+								</span>
+							</Dropdown>
+						</div>
+					</Header>
+					<Content style={{margin: "24px 24px 0px 24px", height: '100%'}}>
+						{this.props.children}
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
 						Ant Design ©2016 Created by Ant UED
@@ -108,6 +126,7 @@ export default class PageLayout extends React.Component {
 
 // 传入参数值定义
 PageLayout.propTypes = {
+	children: PropTypes.element.isRequired,
 	selMenu: PropTypes.array.isRequired,
 	openMenu: PropTypes.array,
 };
