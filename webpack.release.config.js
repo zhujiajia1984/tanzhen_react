@@ -41,7 +41,7 @@ module.exports = {
             use: [{
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'assets/images/'
+                    outputPath: 'radar/assets/images/'
                 }
             }]
         }, {
@@ -53,7 +53,7 @@ module.exports = {
         new ExtractTextPlugin('style.css'),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'radar',
+            title: 'Wise Radar | 客流雷达',
             template: './src/html/index.html',
         }),
         new webpack.optimize.CommonsChunkPlugin({
