@@ -4,8 +4,8 @@
 @HeaderBk: #001529;
 // @HeaderHoverBk: #061024;
 @HeaderHoverBk: #001529;
-@logoWidth: 142px;
-@logoHeight: 48px;
+@logoWidth: 234px;
+@logoHeight: 61px;
 @pagePrimaryColor: #2fb26a;
 
 // style
@@ -32,6 +32,9 @@
             &>.logoArea {
                 height: @logoHeight;
                 width: @logoWidth;
+                &:hover {
+                    cursor: pointer;
+                }
             }
             &>.menuArea {
                 height: 100%;
@@ -49,7 +52,7 @@
                         height: 100%;
                         display: flex;
                         align-items: center; // &>.ant-menu-submenu-title:hover {
-                        // 	color: @pagePrimaryColor;
+                        //  color: @pagePrimaryColor;
                         // }
                     }
                     &>.ant-menu-item-active.MenuItemStyle {
@@ -77,6 +80,9 @@
                 color: white;
                 &:hover {
                     color: @pagePrimaryColor;
+                }
+                &:focus {
+                    text-decoration: none;
                 }
             }
         }

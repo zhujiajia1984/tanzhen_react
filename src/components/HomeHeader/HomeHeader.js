@@ -66,6 +66,11 @@ class HomeHeader extends React.Component {
         window.open("http://www.wisemedia.cn");
     }
 
+    // 登录页
+    onLogoClick() {
+        this.props.history.push('/login');
+    }
+
     //
     render() {
         return (
@@ -76,9 +81,9 @@ class HomeHeader extends React.Component {
             >
                 <div className="HomeHeaderArea"
                 >
-                    <div className="leftArea">
+                    <div className="leftArea" onClick={this.onLogoClick.bind(this)}>
                         <div className="logoArea">
-                            <img src="https://weiquaninfo.cn/images/homepage/homepage_logo.png"
+                            <img src="https://radar.weiquaninfo.cn/radar/assets/images/logo_radar.png"
                                 alt="logo" style={{width: '100%', height: '100%'}} 
                             />
                         </div>
