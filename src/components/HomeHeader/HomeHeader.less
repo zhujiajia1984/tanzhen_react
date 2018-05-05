@@ -1,0 +1,95 @@
+// var
+@HeaderHeight: 64px;
+// @HeaderBk: rgba(6, 16, 36, .2);
+@HeaderBk: #001529;
+// @HeaderHoverBk: #061024;
+@HeaderHoverBk: #001529;
+@logoWidth: 142px;
+@logoHeight: 48px;
+@pagePrimaryColor: #2fb26a;
+
+// style
+.HomeHeaderStyle {
+    color: white; // background-color: red;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10000;
+    width: 100%;
+    display: flex;
+    height: @HeaderHeight;
+    background-color: @HeaderBk;
+    &:hover {
+        background-color: @HeaderHoverBk;
+    }
+    &>.HomeHeaderArea {
+        display: flex;
+        &>.leftArea {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            &>.logoArea {
+                height: @logoHeight;
+                width: @logoWidth;
+            }
+            &>.menuArea {
+                height: 100%;
+                flex: 1;
+                margin-left: 20px;
+                margin-right: 20px;
+                &>.MenuAreaCtrl {
+                    height: 100%;
+                    &>.MenuItemStyle {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                    &>.subMenuStyle {
+                        height: 100%;
+                        display: flex;
+                        align-items: center; // &>.ant-menu-submenu-title:hover {
+                        // 	color: @pagePrimaryColor;
+                        // }
+                    }
+                    &>.ant-menu-item-active.MenuItemStyle {
+                        color: @pagePrimaryColor;
+                    }
+                    &>.ant-menu-submenu-selected.subMenuStyle {
+                        color: @pagePrimaryColor;
+                    }
+                    &>.ant-menu-submenu-open.subMenuStyle {
+                        &>.ant-menu-submenu-title {
+                            color: @pagePrimaryColor;
+                        }
+                    }
+                    &>.ant-menu-item-selected {
+                        background-color: transparent;
+                        color: @pagePrimaryColor;
+                    }
+                }
+            }
+        }
+        &>.rightArea {
+            display: flex;
+            align-items: center;
+            &>.about_us {
+                color: white;
+                &:hover {
+                    color: @pagePrimaryColor;
+                }
+            }
+        }
+    }
+}
+
+.ant-menu-sub {
+    .subMenuItem {
+        &:hover {
+            color: @pagePrimaryColor !important;
+        }
+    }
+    .subMenuItem.ant-menu-item-selected {
+        background-color: transparent;
+        color: @pagePrimaryColor;
+    }
+}
