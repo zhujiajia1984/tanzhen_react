@@ -30,7 +30,7 @@ module.exports = {
                         loader: "less-loader",
                         options: {
                             modifyVars: {
-                                '@primary-color': '#52c41a',
+                                '@primary-color': '#2fb26a',
                             }
                         }
                     }
