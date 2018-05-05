@@ -1,12 +1,9 @@
 import React from 'react';
 import './HomeHeader.less';
-import { Menu, Button, message } from 'antd';
 import { withRouter } from 'react-router';
 
 // const
 const contentWidth = 1200;
-const SubMenu = Menu.SubMenu;
-const Item = Menu.Item;
 
 //
 class HomeHeader extends React.Component {
@@ -14,6 +11,7 @@ class HomeHeader extends React.Component {
         super(props);
         this.state = {
             contentPaddingLR: 0, // 顶部左右padding
+            headerFullWidth: false, // 顶部是否固定1200px（当窗口小于1200px时）
         }
     }
 
@@ -40,9 +38,9 @@ class HomeHeader extends React.Component {
         let width = document.getElementById('root').clientWidth;
         if (width > contentWidth) {
             let remain = (width - contentWidth) / 2;
-            this.setState({ contentPaddingLR: remain });
+            this.setState({ contentPaddingLR: remain, headerFullWidth: false });
         } else {
-            this.setState({ contentPaddingLR: 0 });
+            this.setState({ contentPaddingLR: 0, headerFullWidth: true });
         }
     }
 
@@ -71,24 +69,26 @@ class HomeHeader extends React.Component {
     //
     render() {
         return (
-            <div className="HomeHeaderStyle">
-				<div className="HomeHeaderArea"
-					style={{paddingLeft: this.state.contentPaddingLR, 
-					paddingRight: this.state.contentPaddingLR, width: '100%'}}
-				>
-					<div className="leftArea">
-						<div className="logoArea">
-							<img src="https://weiquaninfo.cn/images/homepage/homepage_logo.png"
-								alt="logo" style={{width: '100%', height: '100%'}} 
-							/>
-						</div>
-					</div>
-					<div className="rightArea">
-						<a href="javascript:;" className="about_us"
+            <div className="HomeHeaderStyle" 
+                style={{paddingLeft: this.state.contentPaddingLR, 
+                    paddingRight: this.state.contentPaddingLR, width: (this.state.headerFullWidth)?contentWidth:'100%'
+                }}
+            >
+                <div className="HomeHeaderArea"
+                >
+                    <div className="leftArea">
+                        <div className="logoArea">
+                            <img src="https://weiquaninfo.cn/images/homepage/homepage_logo.png"
+                                alt="logo" style={{width: '100%', height: '100%'}} 
+                            />
+                        </div>
+                    </div>
+                    <div className="rightArea">
+                        <a href="javascript:;" className="about_us"
                             onClick={this.onHomePage.bind(this)}>关于我们</a>
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
