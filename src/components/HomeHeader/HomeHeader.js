@@ -76,7 +76,7 @@ class HomeHeader extends React.Component {
         return (
             <div className="HomeHeaderStyle" 
                 style={{paddingLeft: this.state.contentPaddingLR, 
-                    paddingRight: this.state.contentPaddingLR, width: (this.state.headerFullWidth)?contentWidth:'100%'
+                    paddingRight: this.state.contentPaddingLR, minWidth: contentWidth
                 }}
             >
                 <div className="HomeHeaderArea"

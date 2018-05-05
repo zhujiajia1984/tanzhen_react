@@ -12,17 +12,20 @@ export default class Login extends React.Component {
     //
     render() {
         return (
-            <div>
+            <div className="LoginPageStyle">
             	<HomeHeader></HomeHeader>
                 <Carousel className="LoginCarousel"
                     autoplay={true}
                     autoplaySpeed={5000}
                 >
-                    <div><h3>1</h3></div>
-                    <div><h3>2</h3></div>
-                    <div><h3>3</h3></div>
-                    <div><h3>4</h3></div>
+                    <div className="bannerImgStyle">
+                        <img src="https://radar.weiquaninfo.cn/radar/assets/images/bg11.jpg" />
+                    </div>
+                    <div className="bannerImgStyle">
+                        <img src="https://radar.weiquaninfo.cn/radar/assets/images/bg22.jpg" />
+                    </div>
                 </Carousel>
+                <div>333</div>
             </div>
         );
     }

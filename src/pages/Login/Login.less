@@ -1,11 +1,25 @@
-.ant-carousel .slick-slide {
-    text-align: center;
-    height: 600px;
-    line-height: 600px;
-    background: #364d79;
-    overflow: hidden;
-}
+// var
+@bannerHeight: 600px;
+@bannerMinWidth: 1200px;
+@bannerBkColor: gray;
 
-.ant-carousel .slick-slide h3 {
-    color: #fff;
+// style
+.LoginPageStyle {
+    &>.ant-carousel {
+        &>.LoginCarousel {
+            .slick-slide {
+                height: @bannerHeight;
+                background: #364d79;
+            }
+            .bannerImgStyle {
+                height: @bannerHeight;
+                background: @bannerBkColor;
+                &>img {
+                    height: 100%;
+                    width: 100%;
+                    min-width: @bannerMinWidth;
+                }
+            }
+        }
+    }
 }
