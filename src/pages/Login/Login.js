@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.less';
 import HomeHeader from '../../components/HomeHeader/HomeHeader';
 import HomeCarousel from '../../components/HomeCarousel/HomeCarousel';
-
+import LoginArea from '../../components/LoginArea/LoginArea';
 //
 export default class Login extends React.Component {
     constructor(props) {
@@ -15,6 +15,7 @@ export default class Login extends React.Component {
             <div className="LoginPageStyle">
             	<HomeHeader></HomeHeader>
                 <HomeCarousel></HomeCarousel>
+                <LoginArea></LoginArea>
             </div>
         );
     }

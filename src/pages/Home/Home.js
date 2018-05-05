@@ -2,32 +2,17 @@ import React from 'react';
 import PageLayout from '../../components/PageLayout/PageLayout';
 import { Row, Col, Card } from 'antd';
 import './Home.less';
-import { Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts';
-// 数据源
-const data = [
-	{ genre: 'Sports', sold: 275, income: 2300 },
-	{ genre: 'Strategy', sold: 115, income: 667 },
-	{ genre: 'Action', sold: 120, income: 982 },
-	{ genre: 'Shooter', sold: 350, income: 5271 },
-	{ genre: 'Other', sold: 150, income: 3710 }
-];
-
-// 定义度量
-const cols = {
-	sold: { alias: '销售量' },
-	genre: { alias: '游戏种类' }
-};
 
 //
 export default class Home extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+    constructor(props) {
+        super(props);
+    }
 
-	//
-	render() {
-		return (
-			<div>
+    //
+    render() {
+        return (
+            <div>
 				<PageLayout	selMenu={['实时雷达']}
 				>
 					<div className="HomeContent">
@@ -49,6 +34,6 @@ export default class Home extends React.Component {
 					</div>
 				</PageLayout>
 			</div>
-		);
-	}
+        );
+    }
 }
