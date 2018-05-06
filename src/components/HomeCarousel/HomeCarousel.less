@@ -15,6 +15,9 @@
         .bannerStyle {
             height: @bannerHeight;
             background-color: @bannerBkColor;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
         }
         .banner1 {
             background-image: url("https://radar.weiquaninfo.cn/radar/assets/images/bg22.jpg");
@@ -23,9 +26,12 @@
             background-image: url("https://radar.weiquaninfo.cn/radar/assets/images/bg11.jpg");
         }
         .bannerText {
-            line-height: @bannerTextHeight;
             color: white;
             font-size: 48px;
+        }
+        .bannerDesp {
+            color: white;
+            font-size: 16px;
         }
     }
 }

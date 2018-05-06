@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginArea.less';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, Checkbox } from 'antd';
 
 // const
 const contentWidth = 1200;
@@ -57,17 +57,21 @@ export default class LoginArea extends React.Component {
                     <FormItem
                     >
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} 
-                            placeholder="请输入用户名"
+                            placeholder="账号名/邮箱/手机号"
                             size="large"
                         />
                     </FormItem>
-                    <FormItem
+                    <FormItem style={{marginBottom: 0}}
                     >
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} 
                             placeholder="请输入密码"
                             size="large"
                             type="password"
                         />
+                    </FormItem>
+                    <FormItem style={{marginBottom: 0}} className="extraFormArea">
+                        <Checkbox className="RememberAccount">记住账号</Checkbox>
+                        <div className="ForgetPwd"><a>忘记密码</a></div>
                     </FormItem>
                     <FormItem>
                         <Button 

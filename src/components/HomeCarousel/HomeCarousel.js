@@ -46,13 +46,18 @@ export default class HomeCarousel extends React.Component {
     render() {
         return (
             <div className="HomeCarouselStyle">
-        		<Carousel autoplay={true} autoplaySpeed={5000}>
+        		<Carousel autoplay={false} autoplaySpeed={5000}>
 					<div className="bannerStyle banner1">
 						<span className="bannerText" style={{paddingLeft: this.state.contentPaddingLR, 
 							paddingRight: this.state.contentPaddingLR}}
 						>
                     	客流雷达-大数据营销神器
                     	</span>
+                        <span className="bannerDesp" style={{paddingLeft: this.state.contentPaddingLR, 
+                            paddingRight: this.state.contentPaddingLR}}
+                        >
+                        入店客流感知、精准营销推送等多种智能营销方式
+                        </span>
 					</div>
 					<div className="bannerStyle banner2">
 						<span className="bannerText" style={{paddingLeft: this.state.contentPaddingLR, 
@@ -60,6 +65,11 @@ export default class HomeCarousel extends React.Component {
 						>
                     	店铺客流，尽在掌握
                     	</span>
+                        <span className="bannerDesp" style={{paddingLeft: this.state.contentPaddingLR, 
+                            paddingRight: this.state.contentPaddingLR}}
+                        >
+                        客流分析和统计、客流热区展示等多维度客流数据
+                        </span>
 					</div>
 				</Carousel>
         	</div>
