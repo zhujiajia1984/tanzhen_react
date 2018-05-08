@@ -3,6 +3,8 @@ import './Login.less';
 import HomeHeader from '../../components/HomeHeader/HomeHeader';
 import HomeCarousel from '../../components/HomeCarousel/HomeCarousel';
 import LoginArea from '../../components/LoginArea/LoginArea';
+import HomeCard from '../../components/HomeCard/HomeCard';
+
 //
 export default class Login extends React.Component {
     constructor(props) {
@@ -16,6 +18,7 @@ export default class Login extends React.Component {
             	<HomeHeader></HomeHeader>
                 <HomeCarousel></HomeCarousel>
                 <LoginArea></LoginArea>
+                <HomeCard></HomeCard>
             </div>
         );
     }

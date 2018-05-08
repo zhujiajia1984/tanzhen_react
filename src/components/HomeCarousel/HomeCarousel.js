@@ -46,7 +46,7 @@ export default class HomeCarousel extends React.Component {
     render() {
         return (
             <div className="HomeCarouselStyle">
-        		<Carousel autoplay={false} autoplaySpeed={5000}>
+        		<Carousel autoplay={true} autoplaySpeed={5000}>
 					<div className="bannerStyle banner1">
 						<span className="bannerText" style={{paddingLeft: this.state.contentPaddingLR, 
 							paddingRight: this.state.contentPaddingLR}}

@@ -61,24 +61,22 @@ export default class LoginArea extends React.Component {
                             size="large"
                         />
                     </FormItem>
-                    <FormItem style={{marginBottom: 0}}
-                    >
+                    <FormItem>
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} 
                             placeholder="请输入密码"
                             size="large"
                             type="password"
                         />
                     </FormItem>
-                    <FormItem style={{marginBottom: 0}} className="extraFormArea">
-                        <Checkbox className="RememberAccount">记住账号</Checkbox>
-                        <div className="ForgetPwd"><a>忘记密码</a></div>
-                    </FormItem>
-                    <FormItem>
+                    <FormItem style={{marginBottom: 0}}>
                         <Button 
                             type="primary"
                             style={{width: '100%'}}
                             size="large"
                         >登录</Button>
+                        <div className="forgetPwdStyle">
+                            <a>忘记密码</a>
+                        </div> 
                     </FormItem>
                 </Form>
             </div>

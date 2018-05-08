@@ -1,3 +1,7 @@
+// var
+@primaryColor: #2fb26a;
+
+// style
 .LoginAreaStyle {
     color: white;
     background-color: rgba(0, 0, 0, .5);
@@ -15,26 +19,12 @@
         font-weight: 500;
         margin-bottom: 24px;
     }
-    &>.ant-form {
-        &>.extraFormArea {
-            &>.ant-form-item-control-wrapper {
-                &>.ant-form-item-control {
-                    &>.ant-form-item-children {
-                        display: flex;
-                        &>.RememberAccount {
-                            &>span {
-                                color: white;
-                            }
-                        }
-                        &>.ForgetPwd {
-                            flex: 1;
-                            text-align: right;
-                            &>a {
-                                color: #666666;
-                            }
-                        }
-                    }
-                }
+    .forgetPwdStyle {
+        text-align: right;
+        &>a {
+            color: #bfbfbf;
+            &:hover {
+                color: @primaryColor;
             }
         }
     }
