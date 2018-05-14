@@ -2,6 +2,7 @@ import React from 'react';
 import './MarketAdd.less';
 import { Steps, Divider, Button, message } from 'antd';
 import PageLayout from '../../components/PageLayout/PageLayout';
+import CrowdAddRule from '../../components/CrowdAddRule/CrowdAddRule';
 
 // const
 const Step = Steps.Step;
@@ -29,7 +30,18 @@ export default class MarketAdd extends React.Component {
     //
     componentDidMount() {
         let steps = this.state.steps;
-        steps[0].content = "111";
+        steps[0].content = <CrowdAddRule></CrowdAddRule>;
+        steps[1].content = <div>
+            <div><span style={{fontWeight: 'bold'}}>时间： </span><span>2018年4月15日 ~ 2018年5月14日</span></div>
+            <div style={{marginTop: 24}}><span style={{fontWeight: 'bold'}}>采集点：</span><span>采集点1、采集点2</span></div>
+            <div style={{marginTop: 24}}><span style={{fontWeight: 'bold'}}>采集范围：</span><span>全部采集</span></div>
+            <div style={{marginTop: 24}}><span style={{fontWeight: 'bold'}}>访客属性：</span><span>新访客</span></div>
+            <div style={{marginTop: 24}}><span style={{fontWeight: 'bold'}}>停留时长：</span><span>全部时长</span></div>
+        </div>;
+        steps[2].content = <div>
+            <div><span>符合规则的人群数量为：</span><span style={{fontWeight: 'bold', fontSize: 20}}>8000</span></div>
+            <div style={{color: '#888888', marginTop: 24}}><span>点击“立即保存”即可保存为人群包，或返回进行修改。</span></div>
+        </div>
         this.setState({ steps: steps });
     }
 

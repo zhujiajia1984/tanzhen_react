@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Tabs, Button, Input, Table } from 'antd';
+import { Tabs, Button, Input, Table, Row, Col } from 'antd';
 import './Market.less';
 import PageLayout from '../../components/PageLayout/PageLayout';
 import MarketAdd from './MarketAdd';
@@ -42,6 +42,63 @@ export default class Market extends React.Component {
 
     // 
     render() {
+        const expandRowData = (
+            <div style={{fontSize: 14}}>
+				<Row gutter={16} style={{marginBottom: 10}}>
+					<Col span={24}>
+						<div style={{display: 'flex', marginLeft: 24}}>
+							人群添加规则：
+						</div>
+					</Col>
+				</Row>
+				<Row gutter={16} style={{marginBottom: 10}}>
+					<Col span={3}>
+						<div style={{display: 'flex', flexDirection: 'row-reverse'}}>
+							时间：
+						</div>
+					</Col>
+					<Col span={9}>
+						<div>2018-04-15 ~ 2018-05-14</div>
+					</Col>
+					<Col span={3}>
+						<div style={{display: 'flex', flexDirection: 'row-reverse'}}>
+							采集点：
+						</div>
+					</Col>
+					<Col span={9}>
+						<div>采集点1、采集点2、采集点3</div>
+					</Col>
+				</Row>
+				<Row gutter={16} style={{marginBottom: 10}}>
+					<Col span={3}>
+						<div style={{display: 'flex', flexDirection: 'row-reverse'}}>
+							采集范围：
+						</div>
+					</Col>
+					<Col span={9}>
+						<div>有效采集</div>
+					</Col>
+					<Col span={3}>
+						<div style={{display: 'flex', flexDirection: 'row-reverse'}}>
+							访客属性：
+						</div>
+					</Col>
+					<Col span={9}>
+						<div>新访客</div>
+					</Col>
+				</Row>
+				<Row gutter={16} style={{marginBottom: 10}}>
+					<Col span={3}>
+						<div style={{display: 'flex', flexDirection: 'row-reverse'}}>
+							停留时长：
+						</div>
+					</Col>
+					<Col span={9}>
+						<span>30分钟以上</span>
+					</Col>
+				</Row>
+			</div>
+        )
         return (
             <div>
             	<Route exact path={this.props.match.url + '/addCrowd'} component={MarketAdd} />
@@ -76,6 +133,9 @@ export default class Market extends React.Component {
 										</div>
 										<Table dataSource={this.state.data}
 											bordered={false}
+											expandedRowRender={(record) => {
+												return expandRowData;
+											}}
 										>
 											<Column
 												title="人群包名称"
@@ -88,10 +148,16 @@ export default class Market extends React.Component {
 											<Column
 												title="人群数量"
 												dataIndex="number"
+												sorter={(a, b)=>{
+													return (a.number.length - b.number.length);
+												}}
 											/>
 											<Column
 												title="创建时间"
 												dataIndex="createTime"
+												sorter={(a, b)=>{
+													return (a.number.length - b.number.length);
+												}}
 											/>
 											<Column
 												title="操作"
