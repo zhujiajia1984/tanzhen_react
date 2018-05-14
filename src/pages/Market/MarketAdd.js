@@ -1,6 +1,6 @@
 import React from 'react';
 import './MarketAdd.less';
-import { Steps, Divider, Button, message } from 'antd';
+import { Steps, Divider, Button, message, Input } from 'antd';
 import PageLayout from '../../components/PageLayout/PageLayout';
 import CrowdAddRule from '../../components/CrowdAddRule/CrowdAddRule';
 
@@ -39,8 +39,12 @@ export default class MarketAdd extends React.Component {
             <div style={{marginTop: 24}}><span style={{fontWeight: 'bold'}}>停留时长：</span><span>全部时长</span></div>
         </div>;
         steps[2].content = <div>
-            <div><span>符合规则的人群数量为：</span><span style={{fontWeight: 'bold', fontSize: 20}}>8000</span></div>
-            <div style={{color: '#888888', marginTop: 24}}><span>点击“立即保存”即可保存为人群包，或返回进行修改。</span></div>
+            <div style={{display: 'flex'}}>
+                <span style={{display: 'flex', alignItems:'center'}}>人群包的名称为：</span>
+                <Input style={{width:200}}/>
+            </div>
+            <div style={{marginTop: 24}}><span>符合规则的人群数量为：</span><span style={{fontWeight: 'bold', fontSize: 20}}>8000</span></div>
+            <div style={{color: '#888888', marginTop: 24}}><span>点击“立即保存”即可保存为人群包，或点击“上一步”返回进行修改。</span></div>
         </div>
         this.setState({ steps: steps });
     }
@@ -67,43 +71,43 @@ export default class MarketAdd extends React.Component {
     render() {
         return (
             <div>
-            	<PageLayout	selMenu={['营销活动']}
-				>
-					<div className="marketAdd">
-						<div className="marketAddTitleRow">新建人群</div>
-						<Steps current={this.state.current}>
-							{this.state.steps.map(item => <Step key={item.title} title={item.title} />)}
-						</Steps>
-						<Divider />
-						<div className="steps-content">
-							{this.state.steps[this.state.current].content}
-						</div>
-						<Divider />
-						<div className="steps-action">
-						{
-							this.state.current < this.state.steps.length - 1
-							&&
-							<Button type="primary" onClick={this.onNext.bind(this)}>下一步</Button>
-						}
-						{
-							this.state.current === this.state.steps.length - 1
-							&&
-							<Button type="primary" onClick={this.onSubmit.bind(this)}
-								loading={this.state.btnLoading}
-							>
-								立即保存
-							</Button>
-						}
-						{
-							this.state.current > 0
-							&&
-							<Button style={{ marginLeft: 8 }} onClick={this.onPrev.bind(this)}>
-								上一步
-							</Button>
-						}
-						</div>
-					</div>
-				</PageLayout>
+                <PageLayout selMenu={['营销活动']}
+                >
+                    <div className="marketAdd">
+                        <div className="marketAddTitleRow">新建人群</div>
+                        <Steps current={this.state.current}>
+                            {this.state.steps.map(item => <Step key={item.title} title={item.title} />)}
+                        </Steps>
+                        <Divider />
+                        <div className="steps-content">
+                            {this.state.steps[this.state.current].content}
+                        </div>
+                        <Divider />
+                        <div className="steps-action">
+                        {
+                            this.state.current < this.state.steps.length - 1
+                            &&
+                            <Button type="primary" onClick={this.onNext.bind(this)}>下一步</Button>
+                        }
+                        {
+                            this.state.current === this.state.steps.length - 1
+                            &&
+                            <Button type="primary" onClick={this.onSubmit.bind(this)}
+                                loading={this.state.btnLoading}
+                            >
+                                立即保存
+                            </Button>
+                        }
+                        {
+                            this.state.current > 0
+                            &&
+                            <Button style={{ marginLeft: 8 }} onClick={this.onPrev.bind(this)}>
+                                上一步
+                            </Button>
+                        }
+                        </div>
+                    </div>
+                </PageLayout>
             </div>
         );
     }
