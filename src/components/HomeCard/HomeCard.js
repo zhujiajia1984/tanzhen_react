@@ -80,8 +80,8 @@ export default class HomeCard extends React.Component {
 
 						>
 							<Meta
-								title="Europe Street beat"
-								description="www.instagram.com"
+								title="客流高效转化"
+								description="店铺客流管理从未如此轻松"
 							/>
 						</Card>
 					</Col>

@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-	Layout,
-	Menu,
-	Icon,
-	Dropdown,
-	Avatar
+    Layout,
+    Menu,
+    Icon,
+    Dropdown,
+    Avatar
 } from 'antd';
 import './PageLayout.less';
 import imgLogo from '../../../assets/images/logo.png';
@@ -19,32 +19,32 @@ const Item = Menu.Item;
 
 //
 export default class PageLayout extends React.Component {
-	constructor(props) {
-		super(props);
-		// read collapsed
-		let collapsedInit = localStorage.getItem('collapsed');
-		if (!collapsedInit) {
-			collapsedInit = false;
-		} else {
-			collapsedInit = (collapsedInit == "true") ? true : false;
-		}
-		// state 
-		this.state = {
-			collapsed: collapsedInit,
-		};
-	}
+    constructor(props) {
+        super(props);
+        // read collapsed
+        let collapsedInit = localStorage.getItem('collapsed');
+        if (!collapsedInit) {
+            collapsedInit = false;
+        } else {
+            collapsedInit = (collapsedInit == "true") ? true : false;
+        }
+        // state 
+        this.state = {
+            collapsed: collapsedInit,
+        };
+    }
 
-	// 侧边栏伸缩
-	onCollapse(collapsed) {
-		this.setState({ collapsed: collapsed });
-		localStorage.setItem('collapsed', collapsed);
-	}
+    // 侧边栏伸缩
+    onCollapse(collapsed) {
+        this.setState({ collapsed: collapsed });
+        localStorage.setItem('collapsed', collapsed);
+    }
 
 
-	//
-	render() {
-		return (
-			<Layout className="PageLayout">
+    //
+    render() {
+        return (
+            <Layout className="PageLayout">
 				<Sider width={256}
 					collapsible={true}
 					// breakpoint="md"
@@ -107,7 +107,7 @@ export default class PageLayout extends React.Component {
 							}>
 								<span className="dropdown-link" style={{padding: "0px 12px"}}>
 									<Avatar size="small" icon="user" />
-									<span style={{marginLeft: 5}}>微信昵称</span>
+									<span style={{marginLeft: 5}}>用户名称</span>
 								</span>
 							</Dropdown>
 						</div>
@@ -116,20 +116,20 @@ export default class PageLayout extends React.Component {
 						{this.props.children}
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
-						Ant Design ©2016 Created by Ant UED
+						Wise Radar ©2018 Created by WiseMedia
 					</Footer>
         		</Layout>
 			</Layout>
-		);
-	}
+        );
+    }
 }
 
 // 传入参数值定义
 PageLayout.propTypes = {
-	children: PropTypes.element.isRequired,
-	selMenu: PropTypes.array.isRequired,
-	openMenu: PropTypes.array,
+    children: PropTypes.element.isRequired,
+    selMenu: PropTypes.array.isRequired,
+    openMenu: PropTypes.array,
 };
 PageLayout.defaultProps = {
-	selMenu: ['系统首页'],
+    selMenu: ['系统首页'],
 };

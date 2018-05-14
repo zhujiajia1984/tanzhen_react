@@ -1,17 +1,22 @@
 import React from 'react';
 import './LoginArea.less';
-import { Form, Input, Icon, Button, Checkbox } from 'antd';
+import { Form, Input, Icon, Button } from 'antd';
+import { withRouter } from 'react-router';
 
 // const
 const contentWidth = 1200;
 const FormItem = Form.Item;
 
 // 
-export default class LoginArea extends React.Component {
+class LoginArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             right: 0, // 右边距离
+            isLoginLoading: false, // 是否登陆中状态
+            account: "", // 当前账号
+            password: "", // 当前密码
+            help: "", // 错误信息
         }
     }
 
@@ -46,6 +51,27 @@ export default class LoginArea extends React.Component {
         }
     }
 
+    // 点击登录按钮
+    onLogin() {
+        this.setState({ isLoginLoading: true });
+        setTimeout(() => {
+            let help = "";
+            // if (this.state.password.length === 0 || this.state.account.length === 0) {
+            //     help = "请输入账号或密码"
+            // }
+            this.setState({ isLoginLoading: false });
+            this.props.history.push("/index");
+        }, 200)
+    }
+
+    // 账号和密码填入
+    onAccountChange(e) {
+        this.setState({ account: e.target.value });
+    }
+    onPwdChange(e) {
+        this.setState({ password: e.target.value });
+    }
+
     //
     render() {
         return (
@@ -59,13 +85,15 @@ export default class LoginArea extends React.Component {
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} 
                             placeholder="账号名/邮箱/手机号"
                             size="large"
+                            onChange={this.onAccountChange.bind(this)}
                         />
                     </FormItem>
-                    <FormItem>
+                    <FormItem help={this.state.help}>
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} 
                             placeholder="请输入密码"
                             size="large"
                             type="password"
+                            onChange={this.onPwdChange.bind(this)}
                         />
                     </FormItem>
                     <FormItem style={{marginBottom: 0}}>
@@ -73,6 +101,8 @@ export default class LoginArea extends React.Component {
                             type="primary"
                             style={{width: '100%'}}
                             size="large"
+                            loading={this.state.isLoginLoading}
+                            onClick={this.onLogin.bind(this)}
                         >登录</Button>
                         <div className="forgetPwdStyle">
                             <a>忘记密码</a>
@@ -83,3 +113,5 @@ export default class LoginArea extends React.Component {
         );
     }
 }
+
+export default withRouter(LoginArea);

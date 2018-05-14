@@ -1,25 +1,13 @@
 [
 {
-	"icon": "dashboard",
-	"type": "main",
-	"name": "实时雷达",
-	"path": "/index"
-},
-{
-	"icon": "tool",
-	"type": "main",
-	"name": "雷达管理",
-	"path": "/device"
-},
-{
-	"icon": "line-chart",
-	"type": "sub",
-	"name": "数据统计",
-	"items": [
-	{
-		"icon": "tool",
-		"type": "main",
-		"name": "访客统计",
-		"path": "/device"
-	}]
+    "icon": "user",
+    "type": "sub",
+    "name": "个人中心",
+    "items": [
+    {
+        "icon": "appstore-o",
+        "type": "main",
+        "name": "营销活动",
+        "path": "/market"
+    }]
 }]
