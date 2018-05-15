@@ -24,7 +24,7 @@ export default class App extends React.Component {
         return (
             <Router>
                 <div className="AppFontFamily">
-                    <Route exact path="/" render={()=>(<Redirect to="/store" />)} />
+                    <Route exact path="/" render={()=>(<Redirect to="/market" />)} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/index" component={Home} />
                     <Route exact path="/device" component={Device} />

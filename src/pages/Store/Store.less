@@ -1,1 +1,62 @@
-.storeMainStyle {}
+// var
+@bannerHeight: 300px;
+
+// style
+.storeMainStyle {
+    display: flex;
+    height: 100%;
+}
+
+.storeContentStyle {
+    width: 100%;
+    padding: 24px;
+}
+
+.storeContent {
+    background-color: white;
+    &>.ant-carousel {
+        .slick-slide {
+            text-align: center;
+            height: @bannerHeight;
+            line-height: @bannerHeight;
+            background: #364d79;
+            overflow: hidden;
+        }
+    }
+}
+
+.storeBody {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.storeTitle {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.storeCardItem {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.wxyao_cover {
+    height: 200px;
+    width: 100%;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span {
+        color: #2c2c2c;
+        font-size: 16px;
+    }
+}
+
+.quote_cover {
+    span {
+        color: #bfbfbf;
+    }
+}

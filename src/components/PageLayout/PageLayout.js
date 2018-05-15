@@ -45,6 +45,9 @@ export default class PageLayout extends React.Component {
 
     //
     render() {
+        const footer = <Footer style={{ textAlign: 'center' }}>
+						Wise Radar ©2018 Created by WiseMedia
+					</Footer>
         return (
             <Layout className="PageLayout">
 				<Sider width={256}
@@ -94,7 +97,7 @@ export default class PageLayout extends React.Component {
 					<Header className="topNavi">
 						<div className="topLeft">
 							<span>
-								
+								{this.props.topTitle}
 							</span>
 						</div>
 						<div className="topRight">
@@ -118,10 +121,7 @@ export default class PageLayout extends React.Component {
 					</Header>
 					<Content style={{margin: (this.props.fullScreen)?"0px":"24px 24px 0px 24px", height: '100%'}}>
 						{this.props.children}
-					</Content>
-					<Footer style={{ textAlign: 'center' }}>
-						Wise Radar ©2018 Created by WiseMedia
-					</Footer>
+					</Content>			
         		</Layout>
 			</Layout>
         );
@@ -135,9 +135,11 @@ PageLayout.propTypes = {
     openMenu: PropTypes.array,
     fullScreen: PropTypes.bool,
     collapsed: PropTypes.bool,
+    topTitle: PropTypes.string,
 };
 PageLayout.defaultProps = {
     selMenu: ['系统首页'],
     fullScreen: false,
     collapsed: false,
+    topTitle: "",
 };
