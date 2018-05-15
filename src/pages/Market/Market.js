@@ -104,71 +104,61 @@ export default class Market extends React.Component {
             	<Route exact path={this.props.match.url + '/addCrowd'} component={MarketAdd} />
             	{
             		(this.props.match.isExact)?
-					<PageLayout	selMenu={['营销活动']}
+					<PageLayout	selMenu={['人群管理']}
 					>
 						<div>
 							<div className="marketTitleRow">
-								<div>营销列表</div>
-							<div className="marketDetail">
-								<a href="javascript:;">功能详情</a>
+								<div>人群管理</div>
 							</div>
-							</div>
-							<div className="card-container">
-								<Tabs type="card" defaultActiveKey="2">
-									<TabPane tab="营销列表" key="1">
-										<p>测试</p>
-									</TabPane>
-									<TabPane tab="营销人群" key="2">
-										<div style={{marginBottom: 16, display: 'flex', flex: 1}}>
-											<div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-												<Button type="primary" onClick={this.onAddCrowd.bind(this)}>新增人群</Button>
-											</div>
-											<div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
-												<Search
-													placeholder="人群包名称搜索"
-													enterButton
-													style={{marginLeft: 10}}
-												/>
-											</div>
-										</div>
-										<Table dataSource={this.state.data}
-											bordered={false}
-											expandedRowRender={(record) => {
-												return expandRowData;
-											}}
-										>
-											<Column
-												title="人群包名称"
-												dataIndex="name"
-											/>
-											<Column
-												title="人群包ID"
-												dataIndex="id"
-											/>
-											<Column
-												title="人群数量"
-												dataIndex="number"
-												sorter={(a, b)=>{
-													return (a.number.length - b.number.length);
-												}}
-											/>
-											<Column
-												title="创建时间"
-												dataIndex="createTime"
-												sorter={(a, b)=>{
-													return (a.number.length - b.number.length);
-												}}
-											/>
-											<Column
-												title="操作"
-												dataIndex="action"
-												render={(text, record) => (
-													<span><a href="javascript:;">删除</a></span>
-												)}
-											/>
-										</Table>
-									</TabPane>
-								</Tabs>
+							<div className="marketBody">
+								<div style={{marginBottom: 16, display: 'flex', flex: 1}}>
+									<div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
+										<Button type="primary" onClick={this.onAddCrowd.bind(this)}>新增人群</Button>
+									</div>
+									<div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
+										<Search
+											placeholder="人群包名称搜索"
+											enterButton
+											style={{marginLeft: 10}}
+										/>
+									</div>
+								</div>
+								<Table dataSource={this.state.data}
+									bordered={false}
+									expandedRowRender={(record) => {
+										return expandRowData;
+									}}
+								>
+									<Column
+										title="人群包名称"
+										dataIndex="name"
+									/>
+									<Column
+										title="人群包ID"
+										dataIndex="id"
+									/>
+									<Column
+										title="人群数量"
+										dataIndex="number"
+										sorter={(a, b)=>{
+											return (a.number.length - b.number.length);
+										}}
+									/>
+									<Column
+										title="创建时间"
+										dataIndex="createTime"
+										sorter={(a, b)=>{
+											return (a.number.length - b.number.length);
+										}}
+									/>
+									<Column
+										title="操作"
+										dataIndex="action"
+										render={(text, record) => (
+											<span><a href="javascript:;">删除</a></span>
+										)}
+									/>
+								</Table>
 							</div>
 						</div>
 					</PageLayout>

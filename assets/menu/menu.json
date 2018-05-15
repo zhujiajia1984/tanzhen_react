@@ -1,13 +1,15 @@
 [
-{
-    "icon": "user",
-    "type": "sub",
-    "name": "个人中心",
-    "items": [
+
     {
-        "icon": "appstore-o",
+        "icon": "user",
         "type": "main",
-        "name": "营销活动",
+        "name": "人群管理",
         "path": "/market"
-    }]
-}]
+    },
+    {
+        "icon": "dashboard",
+        "type": "main",
+        "name": "应用市场",
+        "path": "/store"
+    }
+]

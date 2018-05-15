@@ -71,7 +71,7 @@ export default class MarketAdd extends React.Component {
     render() {
         return (
             <div>
-                <PageLayout selMenu={['营销活动']}
+                <PageLayout selMenu={['人群管理']}
                 >
                     <div className="marketAdd">
                         <div className="marketAddTitleRow">新建人群</div>

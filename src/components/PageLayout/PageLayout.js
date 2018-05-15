@@ -21,16 +21,18 @@ const Item = Menu.Item;
 export default class PageLayout extends React.Component {
     constructor(props) {
         super(props);
-        // read collapsed
-        let collapsedInit = localStorage.getItem('collapsed');
-        if (!collapsedInit) {
-            collapsedInit = false;
-        } else {
-            collapsedInit = (collapsedInit == "true") ? true : false;
-        }
+        // write and read collapsed
+        // localStorage.setItem('collapsed', this.props.collapsed);
+        // let collapsedInit = localStorage.getItem('collapsed');
+        // if (!collapsedInit) {
+        //     collapsedInit = false;
+        // } else {
+        //     collapsedInit = (collapsedInit == "true") ? true : false;
+        // }
         // state 
         this.state = {
-            collapsed: collapsedInit,
+            // collapsed: collapsedInit,
+            collapsed: this.props.collapsed,
         };
     }
 
@@ -91,7 +93,9 @@ export default class PageLayout extends React.Component {
 				<Layout>
 					<Header className="topNavi">
 						<div className="topLeft">
-							<span>{this.props.selMenu}</span>
+							<span>
+								
+							</span>
 						</div>
 						<div className="topRight">
 							<Dropdown overlay={
@@ -112,7 +116,7 @@ export default class PageLayout extends React.Component {
 							</Dropdown>
 						</div>
 					</Header>
-					<Content style={{margin: "24px 24px 0px 24px", height: '100%'}}>
+					<Content style={{margin: (this.props.fullScreen)?"0px":"24px 24px 0px 24px", height: '100%'}}>
 						{this.props.children}
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
@@ -129,7 +133,11 @@ PageLayout.propTypes = {
     children: PropTypes.element.isRequired,
     selMenu: PropTypes.array.isRequired,
     openMenu: PropTypes.array,
+    fullScreen: PropTypes.bool,
+    collapsed: PropTypes.bool,
 };
 PageLayout.defaultProps = {
     selMenu: ['系统首页'],
+    fullScreen: false,
+    collapsed: false,
 };
