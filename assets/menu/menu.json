@@ -7,7 +7,7 @@
         "path": "/market"
     },
     {
-        "icon": "dashboard",
+        "icon": "appstore-o",
         "type": "main",
         "name": "应用市场",
         "path": "/store"

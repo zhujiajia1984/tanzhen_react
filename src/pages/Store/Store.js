@@ -59,7 +59,7 @@ export default class Store extends React.Component {
 						<Menu.Item key="1">全部应用</Menu.Item>
 					</Menu>
 					<div className="storeContentStyle">
-						<Route exact path={this.props.match.url + '/appDetail'} component={AppDetail} />
+						<Route path={this.props.match.url + '/appDetail'} component={AppDetail} />
 						{
 							(this.props.match.isExact)?
 							<div className="storeContent">
@@ -74,7 +74,15 @@ export default class Store extends React.Component {
 										<Row gutter={{xs: 8, sm: 16, md: 24}} >
 											<Col xs={24} sm={24} md={12} lg={12} xl={8}>
 												<Card bordered={true} className="storeCardItem"
-													hoverable={true} onClick={this.onAppClick.bind(this, "wxyao")}
+													hoverable={true}
+													actions={[
+														<div key="1" onClick={this.onAppClick.bind(this, "wxyao")}>
+															<span style={{marginLeft: 8}}>查看详情</span>
+														</div>,
+														<div key="2">
+															<span style={{marginLeft: 8}}>进入应用</span>
+														</div>,
+														]}
 												>
 													<Meta className="appMetaStyle"
 														avatar={
@@ -93,7 +101,15 @@ export default class Store extends React.Component {
 											</Col>
 											<Col xs={24} sm={24} md={12} lg={12} xl={8}>
 												<Card bordered={true} className="storeCardItem"
-													hoverable={true} onClick={this.onAppClick.bind(this, "wisedsp")}
+													hoverable={true}
+													actions={[
+														<div key="1" onClick={this.onAppClick.bind(this, "wisedsp")}>
+															<span style={{marginLeft: 8}}>查看详情</span>
+														</div>,
+														<div key="2">
+															<span style={{marginLeft: 8}}>进入应用</span>
+														</div>,
+														]}
 												>
 													<Meta className="appMetaStyle"
 														avatar={
@@ -113,6 +129,11 @@ export default class Store extends React.Component {
 											<Col xs={24} sm={24} md={12} lg={12} xl={8}>
 												<Card bordered={true} className="storeCardItem"
 													hoverable={true}
+													actions={[
+														<div key="1">
+															<span style={{marginLeft: 8}}>敬请期待</span>
+														</div>
+														]}
 												>
 													<Meta className="storeMore"
 														avatar={
@@ -120,7 +141,7 @@ export default class Store extends React.Component {
 																style={{width: 48, height: 48, borderRadius: 48}}
 															/>
 														}
-														description="更多应用，尽情期待"
+														description="更多应用，敬请期待"
 													/>
 												</Card>
 											</Col>

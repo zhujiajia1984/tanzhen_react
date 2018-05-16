@@ -1,6 +1,8 @@
 import React from 'react';
 import './AppDetail.less';
 import { Tag, Button } from 'antd';
+import { Route } from 'react-router-dom';
+import AppOpenSuccess from './AppOpenSuccess';
 
 // 
 export default class AppDetail extends React.Component {
@@ -9,12 +11,24 @@ export default class AppDetail extends React.Component {
         let appName = localStorage.getItem('appName');
         this.state = {
             appName: appName,
+            wxyaoStauts: null,
         }
     }
 
     // 初始化
     componentDidMount() {
+        let wxyaoStauts = localStorage.getItem('wxyaoStauts');
+        if (wxyaoStauts) {
+            this.setState({ wxyaoStauts: true });
+        } else {
+            this.setState({ wxyaoStauts: false });
+        }
+    }
 
+    // 开通应用
+    onAddApp() {
+        localStorage.setItem('wxyaoStauts', true);
+        this.props.history.push("/store/appDetail/success");
     }
 
     //
@@ -52,31 +66,37 @@ export default class AppDetail extends React.Component {
         }
         return (
             <div className="appDetailStyle">
-                <div className="appDetailTitle">
-                    应用详情
-                </div>
-                <div className="appDetailContent">
-                    <div className="headerContent">
-                        <div className="leftArea">
-                            <img src={imgUrl} 
-                                style={{width: 64, height: 64, borderRadius: 48}}
-                            />
-                            <div className="appNameArea">
-                                <div className="appNameAreaContent">
-                                    <span style={{fontSize: 14, fontWeight: 'bold', marginRight: 16}}>{appTitle}</span>
-                                    {tag}
+                <Route path={this.props.match.url + '/success'} component={AppOpenSuccess} />
+                {
+                    (this.props.match.isExact)?
+                    <div>
+                        <div className="appDetailTitle">
+                            应用详情
+                        </div>
+                        <div className="appDetailContent">
+                            <div className="headerContent">
+                                <div className="leftArea">
+                                    <img src={imgUrl} 
+                                        style={{width: 64, height: 64, borderRadius: 48}}
+                                    />
+                                <div className="appNameArea">
+                                    <div className="appNameAreaContent">
+                                        <span style={{fontSize: 14, fontWeight: 'bold', marginRight: 16}}>{appTitle}</span>
+                                        {tag}
+                                    </div>
+                                        <span style={{color: '#8c8c8c'}}>{(this.state.wxyaoStauts)?"已开通":"未开通"}</span>
+                                    </div>
                                 </div>
-                                <span style={{color: '#8c8c8c'}}>未开通</span>
+                                <div className="rightArea">
+                                    <Button type="primary" onClick={this.onAddApp.bind(this)}>开通应用</Button>
+                                </div>
                             </div>
                         </div>
-                        <div className="rightArea">
-                            <Button type="primary">开通功能</Button>
+                        <div className="detailArea">
+                            {content}
                         </div>
-                    </div>
-                </div>
-                <div className="detailArea">
-                    {content}
-                </div>
+                    </div>:""
+                }
             </div>
         );
     }
