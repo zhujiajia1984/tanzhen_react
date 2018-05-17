@@ -104,7 +104,7 @@ export default class PageLayout extends React.Component {
 								(this.props.topStatus)?
 								<span style={{marginLeft: 8}}>
 									<Tag>基础版(免费)</Tag>
-									<a href="javascript:;" style={{fontSize: 12}}>升级</a>
+									<a href="javascript:;" style={{fontSize: 12, display: 'none'}}>升级</a>
 								</span>:""
 							}
 						</div>

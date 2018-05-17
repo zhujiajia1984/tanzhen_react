@@ -1,6 +1,8 @@
 import React from 'react';
 import './WxYaoDevice.less';
 import { Table, Button, Input, Badge, Row, Col, Divider, Modal, Select, Tag } from 'antd';
+import { Route } from 'react-router-dom';
+import WxYaoDeviceSetting from './WxYaoDeviceSetting';
 
 //const
 const { Column } = Table;
@@ -49,6 +51,9 @@ export default class WxYaoDevice extends React.Component {
         }, 1000);
 
     }
+    onSettingPage() {
+        this.props.history.push("/wxYao/device/setting");
+    }
 
     render() {
         const expandRowData = (
@@ -83,7 +88,10 @@ export default class WxYaoDevice extends React.Component {
         )
         return (
             <div className="wxYaoContent">
-				<div className="wxYaoBody">
+            <Route path={this.props.match.url + '/setting'} component={WxYaoDeviceSetting} />
+            {
+            	(this.props.match.isExact)?
+            	<div className="wxYaoBody">
 					<div className="wxYaoTitle">
 						<div className="wxYaoTitleArea">
 							<span style={{fontSize: 16, marginBottom: 8, flex: 1}}>摇一摇配置</span>
@@ -211,14 +219,15 @@ export default class WxYaoDevice extends React.Component {
 								dataIndex="action"
 								render={(text, record) => {
 									return <span>
-										<a href="javascript:;">页面关联</a>
+										<a href="javascript:;" onClick={this.onSettingPage.bind(this)}>页面关联</a>
 										<Divider type="vertical" />
 										<a href="javascript:;">删除</a>
 									</span>
 								}}
 							/>
 						</Table>
-				</div>
+				</div>:""
+            }	
 			</div>
         );
     }
