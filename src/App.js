@@ -10,6 +10,7 @@ import Home from './pages/Home/Home';
 import Device from './pages/Device/Device';
 import Market from './pages/Market/Market';
 import Store from './pages/Store/Store';
+import WxYao from './pages/Store/AppPage/WxYao/WxYao';
 
 // 
 export default class App extends React.Component {
@@ -30,6 +31,7 @@ export default class App extends React.Component {
                     <Route exact path="/device" component={Device} />
                     <Route path="/market" component={Market} />
                     <Route path="/store" component={Store} />
+                    <Route path="/wxYao" component={WxYao} />
                 </div>
             </Router>
         );

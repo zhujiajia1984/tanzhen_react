@@ -8,7 +8,7 @@ export default class AppOpenSuccess extends React.Component {
     }
 
     onDetail() {
-        this.props.history.push("/store");
+        this.props.history.push("/wxYao");
     }
 
     render() {
