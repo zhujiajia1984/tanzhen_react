@@ -1,7 +1,7 @@
 import React from 'react';
 import './Store.less';
 import PageLayout from '../../components/PageLayout/PageLayout';
-import { Menu, Card, Row, Col, Tag } from 'antd';
+import { Menu, Card, Row, Col, Tag, message } from 'antd';
 import { Route } from 'react-router-dom';
 import AppDetail from './AppDetail';
 
@@ -17,18 +17,32 @@ export default class Store extends React.Component {
             dspStatus: false, //是否已开通dsp
         }
     }
+    //
+    componentDidMount() {
+        let wxyaoStatus = localStorage.getItem('wxyaoStauts');
+        if (wxyaoStatus) {
+            this.setState({ wxyaoStatus: true });
+        }
+    }
 
     // 点击APP应用
-    onAppClick(type) {
+    onAppClick(type, action) {
         switch (type) {
             case "wxyao":
                 // 微信摇一摇
-                if (this.state.wxyaoStatus) {
-                    // 已开通
-                } else {
-                    // 未开通
+                if (action === "detail") {
+                    // 查看详情
                     localStorage.setItem('appName', 'wxyao');
                     this.props.history.push("/store/appDetail");
+                } else if (action === "app") {
+                    // 进入应用
+                    if (this.state.wxyaoStatus) {
+                        // 应用已经开通
+                        this.props.history.push("/wxYao/device");
+                    } else {
+                        // 应用还未开通
+                        message.warning("请先开通应用");
+                    }
                 }
                 break;
             case "wisedsp":
@@ -76,10 +90,10 @@ export default class Store extends React.Component {
 												<Card bordered={true} className="storeCardItem"
 													hoverable={true}
 													actions={[
-														<div key="1" onClick={this.onAppClick.bind(this, "wxyao")}>
+														<div key="1" onClick={this.onAppClick.bind(this, "wxyao", "detail")}>
 															<span style={{marginLeft: 8}}>查看详情</span>
 														</div>,
-														<div key="2">
+														<div key="2" onClick={this.onAppClick.bind(this, "wxyao", "app")}>
 															<span style={{marginLeft: 8}}>进入应用</span>
 														</div>,
 														]}
@@ -93,7 +107,9 @@ export default class Store extends React.Component {
 														title="微信摇一摇"
 														description="打开蓝牙，摇出优惠"
 													/>
-													<div className="appStatus">{(this.state.wxyaoStatus)?"已开通":"未开通"}</div>
+													<div className="appStatus">
+														{(this.state.wxyaoStatus)?"已开通":"未开通"}
+													</div>
 													<div className="appPayStatus">
 														<Tag color="#fa8c16">限时免费</Tag>
 													</div>

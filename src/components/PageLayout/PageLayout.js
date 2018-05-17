@@ -4,7 +4,8 @@ import {
     Menu,
     Icon,
     Dropdown,
-    Avatar
+    Avatar,
+    Tag
 } from 'antd';
 import './PageLayout.less';
 import imgLogo from '../../../assets/images/logo.png';
@@ -99,6 +100,13 @@ export default class PageLayout extends React.Component {
 							<span>
 								{this.props.topTitle}
 							</span>
+							{
+								(this.props.topStatus)?
+								<span style={{marginLeft: 8}}>
+									<Tag>基础版(免费)</Tag>
+									<a href="javascript:;" style={{fontSize: 12}}>升级</a>
+								</span>:""
+							}
 						</div>
 						<div className="topRight">
 							<Dropdown overlay={
@@ -136,10 +144,12 @@ PageLayout.propTypes = {
     fullScreen: PropTypes.bool,
     collapsed: PropTypes.bool,
     topTitle: PropTypes.string,
+    topStatus: PropTypes.bool,
 };
 PageLayout.defaultProps = {
     selMenu: ['系统首页'],
     fullScreen: false,
     collapsed: false,
     topTitle: "",
+    topStatus: false
 };
