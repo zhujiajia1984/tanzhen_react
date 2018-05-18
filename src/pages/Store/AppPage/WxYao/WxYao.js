@@ -12,6 +12,9 @@ import WxYaoPage from './WxYaoPage';
 export default class WxYao extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            key: ['1']
+        }
     }
 
     //
@@ -19,11 +22,18 @@ export default class WxYao extends React.Component {
         switch (key) {
             case "1":
                 // 设备配置
+                localStorage.setItem('wxYaoMenuKey', '1');
                 this.props.history.push("/wxYao/device");
                 break;
             case "2":
                 // 设备配置
+                localStorage.setItem('wxYaoMenuKey', '2');
                 this.props.history.push("/wxYao/page");
+                break;
+            case "3":
+                // 设备配置
+                localStorage.setItem('wxYaoMenuKey', '3');
+                this.props.history.push("/wxYao/data");
                 break;
             default:
                 break;
@@ -31,25 +41,32 @@ export default class WxYao extends React.Component {
     }
 
     //
+    componentDidMount() {
+        let key = localStorage.getItem('wxYaoMenuKey');
+        this.setState({ key: [key] });
+    }
+
+    //
     render() {
         return (
-            <PageLayout	selMenu={['应用市场']} fullScreen={true} collapsed={true}
-            	topTitle="微信摇一摇" topStatus={true}
-			>
-				<div className="wxYaoMainStyle">
-					<Menu mode="inline" 
-						defaultSelectedKeys={['1']}
-						style={{ width: 128, backgroundColor: '#fafafa'}}
-						onClick={this.onMenu.bind(this)}
-					>
-						<Menu.Item key="1">摇一摇配置</Menu.Item>
+            <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
+                topTitle="微信摇一摇" topStatus={true}
+            >
+                <div className="wxYaoMainStyle">
+                    <Menu mode="inline" 
+                        // defaultSelectedKeys={['1']}
+                        selectedKeys={[localStorage.getItem('wxYaoMenuKey')]}
+                        style={{ width: 128, backgroundColor: '#fafafa'}}
+                        onClick={this.onMenu.bind(this)}
+                    >
+                        <Menu.Item key="1">摇一摇配置</Menu.Item>
                         <Menu.Item key="2">页面配置</Menu.Item>
                         <Menu.Item key="3">数据统计</Menu.Item>
-					</Menu>
-					<Route path={this.props.match.url + '/device'} component={WxYaoDevice} />
-					<Route path={this.props.match.url + '/page'} component={WxYaoPage} />
-				</div>
-			</PageLayout>
+                    </Menu>
+                    <Route path={this.props.match.url + '/device'} component={WxYaoDevice} />
+                    <Route path={this.props.match.url + '/page'} component={WxYaoPage} />
+                </div>
+            </PageLayout>
         );
     }
 }

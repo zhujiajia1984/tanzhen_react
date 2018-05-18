@@ -27,10 +27,12 @@ export default class WxYaoDevice extends React.Component {
                 key: i.toString(),
                 deviceid: '1000' + i,
                 mac: "11:22:33:44:55:6" + i % 10 + "(test" + i + ")",
-                pageNum: i % 5,
+                pageNum: i % 3,
                 status: i,
                 devstatus: i % 2,
                 createTime: "2018-05-14 11:49:0" + i % 60,
+                beginTime: "2018-05-14 11:49:0" + i % 60,
+                lastModified: "2018-05-14 11:49:0" + i % 60,
             });
         }
         this.setState({ data: data });
@@ -56,6 +58,9 @@ export default class WxYaoDevice extends React.Component {
     }
 
     render() {
+        const time = (
+            <div title="2018-05-14 13:13:13">2018-05-14</div>
+        )
         const expandRowData = (
             <div style={{fontSize: 14}}>
             	<Row gutter={16}>
@@ -87,7 +92,7 @@ export default class WxYaoDevice extends React.Component {
 			</div>
         )
         return (
-            <div className="wxYaoContent">
+                <div className="wxYaoContent">
             <Route path={this.props.match.url + '/setting'} component={WxYaoDeviceSetting} />
             {
             	(this.props.match.isExact)?
@@ -213,22 +218,49 @@ export default class WxYaoDevice extends React.Component {
 								sorter={(a, b)=>{
 									return (a.createTime.length - b.createTime.length);
 								}}
+								render={(text)=>{
+									return <div title={text}>
+										2018-05-14
+									</div>
+								}}
+							/>
+							<Column
+								title="激活时间"
+								dataIndex="beginTime"
+								sorter={(a, b)=>{
+									return (a.createTime.length - b.createTime.length);
+								}}
+								render={(text)=>{
+									return time;
+								}}
+							/>
+							<Column
+								title="最后更新时间"
+								dataIndex="lastModified"
+								sorter={(a, b)=>{
+									return (a.lastModified.length - b.lastModified.length);
+								}}
+								render={(text)=>{
+									return time;
+								}}
 							/>
 							<Column
 								title="操作"
 								dataIndex="action"
 								render={(text, record) => {
 									return <span>
-										<a href="javascript:;" onClick={this.onSettingPage.bind(this)}>页面关联</a>
+										<a href="javascript:;" onClick={this.onSettingPage.bind(this)}>
+											页面配置
+										</a>
 										<Divider type="vertical" />
 										<a href="javascript:;">删除</a>
 									</span>
 								}}
 							/>
 						</Table>
-				</div>:""
-            }	
-			</div>
-        );
-    }
+				</div>: ""
+            } <
+            /div>
+    );
+}
 }
