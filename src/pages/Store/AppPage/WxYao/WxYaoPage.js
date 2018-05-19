@@ -16,6 +16,9 @@ export default class WxYaoPage extends React.Component {
         super(props);
         this.state = {
             data: [],
+            pagination: {
+                defaultPageSize: 10,
+            },
         }
     }
 
@@ -66,10 +69,10 @@ export default class WxYaoPage extends React.Component {
                     </Col>
                 </Row>
                 <div className="wxYaolink">
-                    <span style={{marginRight: 8}}>11:22:33:44:55:66</span>
+                    <span style={{marginRight: 8}}>11:22:33:44:55:66(名称1)</span>
                 </div>
                 <div className="wxYaolink">
-                    <span style={{marginRight: 8}}>11:22:33:44:55:66</span>
+                    <span style={{marginRight: 8}}>11:22:33:44:55:66(名称2)</span>
                 </div>
             </div>
         )
@@ -85,7 +88,7 @@ export default class WxYaoPage extends React.Component {
                                     <span style={{fontSize: 16, marginBottom: 8, flex: 1}}>页面配置</span>
                                 </div>
                                 <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 24}}>
-                                    可以创建页面并在摇一摇配置中绑定页面。已绑定的页面无法删除，需先在取消页面绑定后才能删除。
+                                    可以创建页面并在摇一摇配置中绑定页面。已绑定的页面无法删除，需要先取消页面绑定后才能删除。
                                 </span>
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
@@ -94,7 +97,7 @@ export default class WxYaoPage extends React.Component {
                                 </div>
                                 <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
                                     <Search
-                                        placeholder="蓝牙ID/雷达名称/雷达设备号模糊搜索"
+                                        placeholder="页面名称/主标题/副标题模糊搜索"
                                         enterButton
                                         style={{marginLeft: 10, width: 300}}
                                     />
@@ -106,6 +109,7 @@ export default class WxYaoPage extends React.Component {
                                 expandedRowRender={(record) => {
                                     return expandRowData;
                                 }}
+                                pagination={this.state.pagination}
                             >
                                 <Column
                                     title="缩略图"
@@ -131,6 +135,9 @@ export default class WxYaoPage extends React.Component {
                                 <Column
                                     title="已绑定设备数"
                                     dataIndex="devNum"
+                                    sorter={(a, b)=>{
+                                        return (a.devNum.length - b.devNum.length);
+                                    }}
                                 />
                                 <Column
                                     title="创建时间"
@@ -157,7 +164,7 @@ export default class WxYaoPage extends React.Component {
                                     dataIndex="action"
                                     render={(text, record) => {
                                         return <span>
-                                            <a href="javascript:;">
+                                            <a href="javascript:;" onClick={this.onAddPage.bind(this)}>
                                                 修改
                                             </a>
                                             <Divider type="vertical" />

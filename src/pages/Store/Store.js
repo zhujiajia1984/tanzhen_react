@@ -32,6 +32,7 @@ export default class Store extends React.Component {
                 // 微信摇一摇
                 if (action === "detail") {
                     // 查看详情
+                    localStorage.setItem('wxYaoMenuKey', '1');
                     localStorage.setItem('appName', 'wxyao');
                     this.props.history.push("/store/appDetail");
                 } else if (action === "app") {
@@ -111,7 +112,7 @@ export default class Store extends React.Component {
 														{(this.state.wxyaoStatus)?"已开通":"未开通"}
 													</div>
 													<div className="appPayStatus">
-														<Tag color="#fa8c16">限时免费</Tag>
+														<Tag color="#52c41a">免费</Tag>
 													</div>
 												</Card>
 											</Col>

@@ -8,7 +8,8 @@ export default class AppOpenSuccess extends React.Component {
     }
 
     onDetail() {
-        this.props.history.push("/wxYao");
+        localStorage.setItem('wxYaoMenuKey', '1');
+        this.props.history.push("/wxYao/device");
     }
 
     render() {
@@ -16,9 +17,9 @@ export default class AppOpenSuccess extends React.Component {
             <div className="appSuccessBody">
             	<Icon type="check-circle" style={{color: "#2fb26a", fontSize: 72, marginBottom: 24}} />
             	<span className="appSuccessTitle">应用开通成功</span>
-            	<span className="appSuccessDesp">使用期限：2018年5月16日 - 2019年5月16日</span>
+            	<span className="appSuccessDesp">基础版免费使用</span>
             	<div className="appSuccessActions">
-            		<Button type="primary" style={{marginRight: 24}}
+            		<Button type="primary"
             			onClick={this.onDetail.bind(this)}
             		>
             			进入应用

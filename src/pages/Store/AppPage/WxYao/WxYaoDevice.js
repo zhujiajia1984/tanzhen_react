@@ -102,7 +102,7 @@ export default class WxYaoDevice extends React.Component {
 							<span style={{fontSize: 16, marginBottom: 8, flex: 1}}>摇一摇配置</span>
 						</div>
 						<span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 24}}>
-							必须是含有蓝牙模块并支持ibeacon协议的R2雷达设备才能够进行配置，其他类型设备配置无效。
+							必须是含有蓝牙模块并支持ibeacon协议的雷达设备才能够进行配置，其他类型设备配置无效。
 						</span>
 					</div>
 					<div style={{marginBottom: 16, display: 'flex', flex: 1}}>
@@ -191,28 +191,6 @@ export default class WxYaoDevice extends React.Component {
 								}}
 							/>
 							<Column
-								title="摇一摇状态"
-								dataIndex="devstatus"
-								filters={[{
-									text: '已激活',
-									value: 0
-								}, {
-									text: '未激活',
-									value: 1
-								}]}
-								filterMultiple={false}
-								onFilter={(value, record)=>{
-									return (record.status%2)==value;
-								}}
-								render={(text)=>{
-									if(text%2 === 0){
-										return <Badge status="success" text="已激活" />
-									}else{
-										return <Badge status="default" text="未激活" />
-									}
-								}}
-							/>
-							<Column
 								title="创建时间"
 								dataIndex="createTime"
 								sorter={(a, b)=>{
@@ -222,16 +200,6 @@ export default class WxYaoDevice extends React.Component {
 									return <div title={text}>
 										2018-05-14
 									</div>
-								}}
-							/>
-							<Column
-								title="激活时间"
-								dataIndex="beginTime"
-								sorter={(a, b)=>{
-									return (a.createTime.length - b.createTime.length);
-								}}
-								render={(text)=>{
-									return time;
 								}}
 							/>
 							<Column

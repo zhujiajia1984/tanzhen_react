@@ -27,8 +27,14 @@ export default class AppDetail extends React.Component {
 
     // 开通应用
     onAddApp() {
-        localStorage.setItem('wxyaoStauts', true);
-        this.props.history.push("/store/appDetail/success");
+        if (localStorage.getItem('wxyaoStauts')) {
+            // 已开通
+            this.props.history.push("/wxYao/device");
+        } else {
+            // 未开通
+            localStorage.setItem('wxyaoStauts', true);
+            this.props.history.push("/store/appDetail/success");
+        }
     }
 
     //
@@ -38,11 +44,15 @@ export default class AppDetail extends React.Component {
         let appName = this.state.appName;
         let tag = null;
         let content = null;
+        let isAddApp = false;
         if (appName) {
             if (appName === "wxyao") {
                 imgUrl = "https://radar.weiquaninfo.cn/radar/assets/images/wxyao_icon.png";
                 appTitle = "微信摇一摇";
-                tag = <Tag color="#fa8c16">限时免费</Tag>;
+                tag = <Tag color="#52c41a">免费</Tag>;
+                if (localStorage.getItem('wxyaoStauts')) {
+                    isAddApp = true;
+                }
                 content = <div>
                     <div>
                         <div style={{fontSize: 16, fontWeight: 'bold'}}>使用条件：</div>
@@ -88,7 +98,11 @@ export default class AppDetail extends React.Component {
                                     </div>
                                 </div>
                                 <div className="rightArea">
-                                    <Button type="primary" onClick={this.onAddApp.bind(this)}>开通应用</Button>
+                                    <Button type="primary" onClick={this.onAddApp.bind(this)}>
+                                    {
+                                        (isAddApp)?"查看功能":"开通功能"
+                                    }
+                                    </Button>
                                 </div>
                             </div>
                         </div>
