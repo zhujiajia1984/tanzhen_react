@@ -5,6 +5,7 @@ import { Menu } from 'antd';
 import { Route } from 'react-router-dom';
 import WxYaoDevice from './WxYaoDevice';
 import WxYaoPage from './WxYaoPage';
+import WxYaoData from './WxYaoData';
 
 //const
 
@@ -31,7 +32,7 @@ export default class WxYao extends React.Component {
                 this.props.history.push("/wxYao/page");
                 break;
             case "3":
-                // 设备配置
+                // 数据统计
                 localStorage.setItem('wxYaoMenuKey', '3');
                 this.props.history.push("/wxYao/data");
                 break;
@@ -65,6 +66,7 @@ export default class WxYao extends React.Component {
                     </Menu>
                     <Route path={this.props.match.url + '/device'} component={WxYaoDevice} />
                     <Route path={this.props.match.url + '/page'} component={WxYaoPage} />
+                    <Route path={this.props.match.url + '/data'} component={WxYaoData} />
                 </div>
             </PageLayout>
         );
