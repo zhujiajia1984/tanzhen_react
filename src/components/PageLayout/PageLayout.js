@@ -107,6 +107,12 @@ export default class PageLayout extends React.Component {
 									<a href="javascript:;" style={{fontSize: 12, display: 'none'}}>升级</a>
 								</span>:""
 							}
+							{
+								(this.props.topLink)?
+								<a href="http://dsp.wisemedia.cn" style={{fontSize: 10}} target="_blank">
+									{this.props.topLink}
+								</a>:""
+							}
 						</div>
 						<div className="topRight">
 							<Dropdown overlay={
@@ -145,11 +151,13 @@ PageLayout.propTypes = {
     collapsed: PropTypes.bool,
     topTitle: PropTypes.string,
     topStatus: PropTypes.bool,
+    topLink: PropTypes.string,
 };
 PageLayout.defaultProps = {
     selMenu: ['系统首页'],
     fullScreen: false,
     collapsed: false,
     topTitle: "",
-    topStatus: false
+    topStatus: false,
+    topLink: ""
 };

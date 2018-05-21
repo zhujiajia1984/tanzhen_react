@@ -8,24 +8,29 @@ export default class AppOpenSuccess extends React.Component {
     }
 
     onDetail() {
-        localStorage.setItem('wxYaoMenuKey', '1');
-        this.props.history.push("/wxYao/device");
+        if (localStorage.getItem('appName') === "wxYao") {
+            localStorage.setItem('wxYaoMenuKey', '1');
+            this.props.history.push("/wxYao/device");
+        } else if (localStorage.getItem('appName') === "wisedsp") {
+            localStorage.setItem('wisedspMenuKey', '1');
+            this.props.history.push("/wisedsp/salepoint");
+        }
     }
 
     render() {
         return (
             <div className="appSuccessBody">
-            	<Icon type="check-circle" style={{color: "#2fb26a", fontSize: 72, marginBottom: 24}} />
-            	<span className="appSuccessTitle">应用开通成功</span>
-            	<span className="appSuccessDesp">基础版免费使用</span>
-            	<div className="appSuccessActions">
-            		<Button type="primary"
-            			onClick={this.onDetail.bind(this)}
-            		>
-            			进入应用
-            		</Button>
-            	</div>
-            	
+                <Icon type="check-circle" style={{color: "#2fb26a", fontSize: 72, marginBottom: 24}} />
+                <span className="appSuccessTitle">应用开通成功</span>
+                <span className="appSuccessDesp">基础版免费使用</span>
+                <div className="appSuccessActions">
+                    <Button type="primary"
+                        onClick={this.onDetail.bind(this)}
+                    >
+                        进入应用
+                    </Button>
+                </div>
+                
             </div>
         );
     }

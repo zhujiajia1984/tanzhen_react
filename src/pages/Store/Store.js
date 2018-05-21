@@ -23,6 +23,10 @@ export default class Store extends React.Component {
         if (wxyaoStatus) {
             this.setState({ wxyaoStatus: true });
         }
+        let dspStatus = localStorage.getItem('dspStatus');
+        if (dspStatus) {
+            this.setState({ dspStatus: true });
+        }
     }
 
     // 点击APP应用
@@ -31,14 +35,14 @@ export default class Store extends React.Component {
             case "wxyao":
                 // 微信摇一摇
                 if (action === "detail") {
-                    // 查看详情
-                    localStorage.setItem('wxYaoMenuKey', '1');
+                    // 查看详情 
                     localStorage.setItem('appName', 'wxyao');
                     this.props.history.push("/store/appDetail");
                 } else if (action === "app") {
                     // 进入应用
                     if (this.state.wxyaoStatus) {
                         // 应用已经开通
+                        localStorage.setItem('wxYaoMenuKey', '1');
                         this.props.history.push("/wxYao/device");
                     } else {
                         // 应用还未开通
@@ -48,12 +52,20 @@ export default class Store extends React.Component {
                 break;
             case "wisedsp":
                 // 新数DSP
-                if (this.state.dspStatus) {
-                    // 已开通
-                } else {
-                    // 未开通
+                if (action === "detail") {
+                    // 查看详情 
                     localStorage.setItem('appName', 'wisedsp');
                     this.props.history.push("/store/appDetail");
+                } else if (action === "app") {
+                    // 进入应用
+                    if (this.state.dspStatus) {
+                        // 应用已经开通
+                        localStorage.setItem('wisedspMenuKey', '1');
+                        this.props.history.push("/wisedsp/salepoint");
+                    } else {
+                        // 应用还未开通
+                        message.warning("请先开通应用");
+                    }
                 }
                 break;
             default:
@@ -120,10 +132,10 @@ export default class Store extends React.Component {
 												<Card bordered={true} className="storeCardItem"
 													hoverable={true}
 													actions={[
-														<div key="1" onClick={this.onAppClick.bind(this, "wisedsp")}>
+														<div key="1" onClick={this.onAppClick.bind(this, "wisedsp", "detail")}>
 															<span style={{marginLeft: 8}}>查看详情</span>
 														</div>,
-														<div key="2">
+														<div key="2" onClick={this.onAppClick.bind(this, "wisedsp", "app")}>
 															<span style={{marginLeft: 8}}>进入应用</span>
 														</div>,
 														]}

@@ -11,6 +11,7 @@ import Device from './pages/Device/Device';
 import Market from './pages/Market/Market';
 import Store from './pages/Store/Store';
 import WxYao from './pages/Store/AppPage/WxYao/WxYao';
+import WiseDsp from './pages/Store/AppPage/WiseDsp/WiseDsp';
 
 // 
 export default class App extends React.Component {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
                     <Route path="/market" component={Market} />
                     <Route path="/store" component={Store} />
                     <Route path="/wxYao" component={WxYao} />
+                    <Route path="/wisedsp" component={WiseDsp} />
                 </div>
             </Router>
         );
