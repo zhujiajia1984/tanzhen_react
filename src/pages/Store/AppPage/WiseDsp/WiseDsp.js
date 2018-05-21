@@ -35,7 +35,7 @@ export default class WiseDsp extends React.Component {
                         style={{ width: 128, backgroundColor: '#fafafa'}}
                         onClick={this.onMenu.bind(this)}
                     >
-                        <Menu.Item key="1">人群导入</Menu.Item> 
+                        <Menu.Item key="1">人群关联</Menu.Item> 
                     </Menu>
                     <Route path={this.props.match.url + '/salepoint'} component={SalePoint} />
                 </div>
