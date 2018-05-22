@@ -1,9 +1,12 @@
 import React from 'react';
 import './SalePoint.less';
-import { Form, Input, Icon, Button, Row, Col } from 'antd';
+import { Form, Input, Icon, Button, Row, Col, Tabs } from 'antd';
+import PeopleImport from '../../../../components/WiseDspApp/PeopleImport/PeopleImport';
+import PeopleImportRecord from '../../../../components/WiseDspApp/PeopleImportRecord/PeopleImportRecord';
 
 // const
 const FormItem = Form.Item;
+const TabPane = Tabs.TabPane;
 
 // 
 export default class SalePoint extends React.Component {
@@ -47,14 +50,14 @@ export default class SalePoint extends React.Component {
                     {
                         (this.state.isDspLogin)?
                         <div className="wiseDspLoginedPage">
-                            <div className="wxYaoTitle">
-                                <div className="wxYaoTitleArea">
-                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1}}>人群关联营销点</span>
-                                </div>
-                                <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 24}}>
-                                    可以把雷达平台的人群和新数DSP平台中的营销点建立关联。
-                                </span>
-                            </div>
+                            <Tabs defaultActiveKey="1">
+                                <TabPane tab="人群导入" key="1">
+                                    <PeopleImport></PeopleImport>
+                                </TabPane>
+                                <TabPane tab="导入记录" key="2">
+                                    <PeopleImportRecord></PeopleImportRecord>
+                                </TabPane>
+                            </Tabs>
                         </div>:
                         <div className="wiseDspLoginPage">
                             <div className="wxYaoTitle">
