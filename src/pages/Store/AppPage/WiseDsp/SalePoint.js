@@ -62,10 +62,10 @@ export default class SalePoint extends React.Component {
                         <div className="wiseDspLoginPage">
                             <div className="wxYaoTitle">
                                 <div className="wxYaoTitleArea">
-                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1}}>新数DSP授权</span>
+                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1}}>新数灯塔授权</span>
                                 </div>
                                 <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 24}}>
-                                    使用新数DSP账号和密码对新数雷达平台进行授权，授权成功后即可使用相应功能。
+                                    使用新数灯塔账号和密码对新数雷达平台进行授权，授权成功后即可使用相应功能。
                                 </span>
                             </div>
                             <div className="wiseDspLoginBody">

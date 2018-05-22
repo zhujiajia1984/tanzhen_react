@@ -26,7 +26,7 @@ export default class WiseDsp extends React.Component {
     render() {
         return (
             <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
-                topTitle="新数DSP" topStatus={true} topLink="单独登录DSP"
+                topTitle="新数灯塔" topStatus={true} topLink="单独登录灯塔"
             >
                 <div className="wxYaoMainStyle">
                     <Menu mode="inline" 

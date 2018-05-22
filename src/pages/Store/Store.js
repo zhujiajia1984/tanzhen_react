@@ -51,7 +51,7 @@ export default class Store extends React.Component {
                 }
                 break;
             case "wisedsp":
-                // 新数DSP
+                // 新数灯塔
                 if (action === "detail") {
                     // 查看详情 
                     localStorage.setItem('appName', 'wisedsp');
@@ -146,7 +146,7 @@ export default class Store extends React.Component {
 																style={{width: 48, height: 48, borderRadius: 48}}
 															/>
 														}
-														title="新数DSP"
+														title="新数灯塔"
 														description="数据互联，用户共享"
 													/>
 													<div className="appStatus">{(this.state.dspStatus)?"已开通":"未开通"}</div>

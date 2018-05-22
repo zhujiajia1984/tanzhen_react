@@ -96,7 +96,7 @@ export default class AppDetail extends React.Component {
                 </div>;
             } else if (appName === "wisedsp") {
                 imgUrl = "https://radar.weiquaninfo.cn/radar/assets/images/dsp_icon.png";
-                appTitle = "新数DSP";
+                appTitle = "新数灯塔";
                 tag = <Tag color="#52c41a">免费</Tag>;
                 if (localStorage.getItem('dspStatus')) {
                     isAddApp = true;
@@ -108,14 +108,14 @@ export default class AppDetail extends React.Component {
                     <div>
                         <div style={{fontSize: 16, fontWeight: 'bold'}}>使用条件：</div>
                         <div className="detailcontent1">
-                            <div>【1】登录要求：必须在新数DSP平台中已开通账号；</div>
+                            <div>【1】登录要求：必须在新数灯塔平台中已开通账号；</div>
                             <div>【2】基础版免费：开通后可免费使用基础版功能；</div>
                         </div>
                     </div>
                     <div>
                         <div style={{fontSize: 16, fontWeight: 'bold'}}>功能简介：</div>
                         <div className="detailcontent2">
-                            <div>【1】导入营销点：可把在雷达平台中的人群包导入到DSP的营销点；</div>
+                            <div>【1】导入营销点：可把在雷达平台中的人群包导入到新数灯塔的营销点；</div>
                         </div>
                     </div>
                 </div>;
