@@ -12,6 +12,7 @@ import imgLogo from '../../../assets/images/logo.png';
 import PropTypes from 'prop-types';
 import menu from '../../../assets/menu/menu.json';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 // const
 const { Header, Content, Footer, Sider } = Layout;
@@ -19,7 +20,7 @@ const SubMenu = Menu.SubMenu;
 const Item = Menu.Item;
 
 //
-export default class PageLayout extends React.Component {
+class PageLayout extends React.Component {
     constructor(props) {
         super(props);
         // write and read collapsed
@@ -41,6 +42,12 @@ export default class PageLayout extends React.Component {
     onCollapse(collapsed) {
         this.setState({ collapsed: collapsed });
         localStorage.setItem('collapsed', collapsed);
+    }
+
+    //
+    onReLogin() {
+        localStorage.setItem('isDspLogin', "");
+        this.props.history.push("/wisedsp/salepoint");
     }
 
 
@@ -109,9 +116,16 @@ export default class PageLayout extends React.Component {
 							}
 							{
 								(this.props.topLink)?
-								<a href="http://dsp.wisemedia.cn" style={{fontSize: 10}} target="_blank">
-									{this.props.topLink}
-								</a>:""
+								<span>
+									<a href="http://dsp.wisemedia.cn" style={{fontSize: 10}} target="_blank">
+										{this.props.topLink}
+									</a>
+									<a href="javascript:;" style={{fontSize: 10, marginLeft: 12}}
+										onClick={this.onReLogin.bind(this)}
+									>
+										重新授权
+									</a>
+								</span>:""
 							}
 						</div>
 						<div className="topRight">
@@ -141,6 +155,8 @@ export default class PageLayout extends React.Component {
         );
     }
 }
+
+export default withRouter(PageLayout);
 
 // 传入参数值定义
 PageLayout.propTypes = {
