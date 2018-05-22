@@ -71,7 +71,7 @@ export default class SalePoint extends React.Component {
                             <div className="wiseDspLoginBody">
                                 <Form>
                                     <FormItem
-                                        label="DSP账号"
+                                        label="灯塔账号"
                                         labelCol={{span: 6, offset: 0}}
                                         wrapperCol={{span: 10, offset: 0}}
                                     >
@@ -82,7 +82,7 @@ export default class SalePoint extends React.Component {
                                         />
                                     </FormItem>
                                     <FormItem 
-                                        label="DSP密码"
+                                        label="灯塔密码"
                                         labelCol={{span: 6, offset: 0}}
                                         wrapperCol={{span: 10, offset: 0}}
                                      >

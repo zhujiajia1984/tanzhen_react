@@ -117,7 +117,7 @@ class PageLayout extends React.Component {
 							{
 								(this.props.topLink)?
 								<span>
-									<a href="http://dsp.wisemedia.cn" style={{fontSize: 10}} target="_blank">
+									<a href="https://xdt.wisemedia.cn" style={{fontSize: 10}} target="_blank">
 										{this.props.topLink}
 									</a>
 									<a href="javascript:;" style={{fontSize: 10, marginLeft: 12}}

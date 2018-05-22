@@ -8,7 +8,7 @@ export default class AppOpenSuccess extends React.Component {
     }
 
     onDetail() {
-        if (localStorage.getItem('appName') === "wxYao") {
+        if (localStorage.getItem('appName') === "wxyao") {
             localStorage.setItem('wxYaoMenuKey', '1');
             this.props.history.push("/wxYao/device");
         } else if (localStorage.getItem('appName') === "wisedsp") {
