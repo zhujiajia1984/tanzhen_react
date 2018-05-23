@@ -32,6 +32,19 @@ export default class PeopleImportRecord extends React.Component {
     }
 
     render() {
+        const expandRowData = (
+            <div style={{fontSize: 14}}>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <div style={{fontWeight: 'bold'}}>
+                            导入详情：
+                        </div>
+                    </Col>
+                </Row>
+                <div className="wxYaolink">人群数量: 5000</div>
+                <div className="wxYaolink">导入数量: 3000</div>
+            </div>
+        )
         return (
             <div className="peopleImportStyle">
                 <div className="searchArea">
@@ -55,6 +68,9 @@ export default class PeopleImportRecord extends React.Component {
                 <Table dataSource={this.state.data}
                     bordered={false}
                     locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
+                    expandedRowRender={(record) => {
+                        return expandRowData;
+                    }}
                 >
                     <Column
                         title="人群包名称"

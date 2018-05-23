@@ -76,7 +76,7 @@ export default class SalePoint extends React.Component {
                                         wrapperCol={{span: 10, offset: 0}}
                                     >
                                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} 
-                                            placeholder="DSP账号"
+                                            placeholder="请输入账号"
                                             size="large"
                                             // onChange={this.onAccountChange.bind(this)}
                                         />
