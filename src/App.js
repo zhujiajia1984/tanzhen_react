@@ -10,6 +10,10 @@ import Home from './pages/Home/Home';
 import Device from './pages/Device/Device';
 import Market from './pages/Market/Market';
 import Store from './pages/Store/Store';
+import StorePhone from './pages/Store/StorePhone';
+import PhoneAppDetail from './pages/Store/PhoneAppDetail';
+import NumberManage from './pages/Store/AppPage/PhoneSale/NumberManage';
+import ChargeManage from './pages/Store/AppPage/PhoneSale/ChargeManage';
 import WxYao from './pages/Store/AppPage/WxYao/WxYao';
 import WiseDsp from './pages/Store/AppPage/WiseDsp/WiseDsp';
 
@@ -31,7 +35,10 @@ export default class App extends React.Component {
                     <Route exact path="/index" component={Home} />
                     <Route exact path="/device" component={Device} />
                     <Route path="/market" component={Market} />
-                    <Route path="/store" component={Store} />
+                    <Route path="/store" component={StorePhone} />
+                    <Route path="/phoneAppDetail" component={PhoneAppDetail} />
+                    <Route path="/numberManage" component={NumberManage} />
+                    <Route path="/chargeManage" component={ChargeManage} />
                     <Route path="/wxYao" component={WxYao} />
                     <Route path="/wisedsp" component={WiseDsp} />
                 </div>
