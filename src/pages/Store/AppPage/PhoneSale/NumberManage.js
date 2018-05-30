@@ -43,6 +43,7 @@ export default class NumberManage extends React.Component {
                 agentName: '代理商' + i,
                 validTime: "2019-05-14",
                 lastModified: "2018-05-14 11:49:0" + i % 60,
+                area: '地级市',
             });
         }
         this.setState({ data: data });
@@ -131,10 +132,12 @@ export default class NumberManage extends React.Component {
 							<div style={{marginBottom: 16, display: 'flex', flex: 1}}>
 								<div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
 									<Button type="primary" >刷新小号</Button>
+									<span style={{marginLeft: 12}}>小号总数：10</span>
+									<span style={{marginLeft: 12}}>可绑定数量：2</span>
 								</div>
 								<div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
 									<Search
-										placeholder="蓝牙ID/雷达名称/雷达设备号模糊搜索"
+										placeholder="号码/区域/代理商 模糊搜索"
 										enterButton
 										style={{marginLeft: 10, width: 300}}
 									/>
@@ -171,6 +174,10 @@ export default class NumberManage extends React.Component {
 									}}
 								/>
 								<Column
+									title="小号区域"
+									dataIndex="area"
+								/>
+								<Column
 									title="已绑定代理商"
 									dataIndex="agentName"
 									sorter={(a, b)=>{
@@ -185,7 +192,7 @@ export default class NumberManage extends React.Component {
 									}}
 								/>
 								<Column
-									title="小号截止有效期"
+									title="小号有效期"
 									dataIndex="validTime"
 									sorter={(a, b)=>{
 										return (a.validTime.length - b.validTime.length);
@@ -210,12 +217,12 @@ export default class NumberManage extends React.Component {
 												绑定管理
 											</a>
 											<Divider type="vertical" />
-											<a href="javascript:;" onClick={this.onOperate.bind(this, 'status')}>
-												状态管理
-											</a>
-											<Divider type="vertical" />
 											<a href="javascript:;" onClick={this.onOperate.bind(this, 'validTime')}>
 												有效期
+											</a>
+											<Divider type="vertical" />
+											<a href="javascript:;" onClick={this.onOperate.bind(this, 'status')}>
+												状态管理
 											</a>
 										</span>
 									}}
