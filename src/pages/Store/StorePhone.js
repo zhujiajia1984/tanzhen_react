@@ -8,51 +8,54 @@ const { Meta } = Card;
 
 //
 export default class StorePhone extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			data: [{
-				title: '电话营销',
-				desp: '雷达电销，简单实用',
-				status: '已开通',
-				tag: '运营',
-				icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
-			},
-			{
-				title: '电话营销',
-				desp: '雷达电销，简单实用',
-				status: '已开通',
-				tag: '代理商',
-				icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
-			},{
-				title: '电话营销',
-				desp: '雷达电销，简单实用',
-				status: '已开通',
-				tag: '广告主',
-				icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
-			}
-			],
-		}
-	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [{
+                    title: '电话营销',
+                    desp: '雷达电销，简单实用',
+                    status: '已开通',
+                    tag: '运营',
+                    icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
+                },
+                {
+                    title: '电话营销',
+                    desp: '雷达电销，简单实用',
+                    status: '已开通',
+                    tag: '代理商',
+                    icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
+                }, {
+                    title: '电话营销',
+                    desp: '雷达电销，简单实用',
+                    status: '已开通',
+                    tag: '广告主',
+                    icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
+                }
+            ],
+        }
+    }
 
-	//
-	onDetail(){
-		this.props.history.push("/phoneAppDetail");
-	}
-	onEnterApp(type){
-		switch(type){
-			case "运营":
-				this.props.history.push("/numberManage");
-				break;
-			default:
-				break;
-		}
-	}
+    //
+    onDetail() {
+        this.props.history.push("/phoneAppDetail");
+    }
+    onEnterApp(type) {
+        switch (type) {
+            case "运营":
+                this.props.history.push("/numberManage");
+                break;
+            case "代理商":
+                this.props.history.push("/agentNumberManage");
+                break;
+            default:
+                break;
+        }
+    }
 
-	//
-	render() {
-		return (
-			<PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
+    //
+    render() {
+        return (
+            <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
             	topTitle="应用市场">
 				<div className="storePhoneStyle">
 					<Menu mode="inline" 
@@ -110,6 +113,6 @@ export default class StorePhone extends React.Component {
 					</div>
 				</div>
 			</PageLayout>
-		);
-	}
+        );
+    }
 }

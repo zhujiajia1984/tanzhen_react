@@ -23,7 +23,7 @@ const Option = Select.Option;
 const { Column } = Table;
 
 //
-export default class NumberManage extends React.Component {
+export default class AgentNumberManage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -41,7 +41,7 @@ export default class NumberManage extends React.Component {
                 key: i.toString(),
                 number: '1701234567' + i,
                 numberStatus: i % 2,
-                agentName: '代理商' + i,
+                agentName: '广告主' + i,
                 validTime: "2019-05-14",
                 lastModified: "2018-05-14 11:49:0" + i % 60,
                 area: '城市名称' + i,
@@ -55,11 +55,15 @@ export default class NumberManage extends React.Component {
         switch (key) {
             case "1":
                 // 小号管理
-                this.props.history.push("/numberManage");
+                this.props.history.push("/agentNumberManage");
                 break;
             case "2":
                 // 充值管理
-                this.props.history.push("/chargeManage");
+                this.props.history.push("/agentChargeManage");
+                break;
+            case "3":
+                // 充值管理
+                this.props.history.push("/agentBuyManage");
                 break;
             default:
                 break;
@@ -95,8 +99,8 @@ export default class NumberManage extends React.Component {
                 title = "选择客户：";
                 content = <Select defaultValue="1" style={{ width: '100%' }}>
 							<Option value="1">未选择</Option>
-							<Option value="2">代理商名称1</Option>
-							<Option value="3">代理商名称2</Option>
+							<Option value="2">广告主名称1</Option>
+							<Option value="3">广告主名称2</Option>
 						</Select>
                 break;
             case "状态管理":
@@ -119,6 +123,7 @@ export default class NumberManage extends React.Component {
                     >
                         <Menu.Item key="1">小号管理</Menu.Item>
                         <Menu.Item key="2">充值管理</Menu.Item>
+                        <Menu.Item key="3">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                     	<div className="wxYaoBody">
@@ -184,7 +189,7 @@ export default class NumberManage extends React.Component {
 										return (a.agentName.length - b.agentName.length);
 									}}
 									render={(text)=>{
-										if(text === "代理商0" || text === "代理商1"){
+										if(text === "广告主0" || text === "广告主1"){
 											return "-"
 										}else{
 											return text
@@ -219,10 +224,6 @@ export default class NumberManage extends React.Component {
 											<Divider type="vertical" />
 											<a href="javascript:;" onClick={this.onOperate.bind(this, 'validTime')}>
 												有效期
-											</a>
-											<Divider type="vertical" />
-											<a href="javascript:;" onClick={this.onOperate.bind(this, 'status')}>
-												状态管理
 											</a>
 										</span>
 									}}

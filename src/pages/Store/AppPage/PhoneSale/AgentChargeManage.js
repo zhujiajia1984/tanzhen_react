@@ -11,9 +11,6 @@ import {
     Select,
     Table,
     message,
-    Divider,
-    Switch,
-    DatePicker
 } from 'antd';
 
 // const
@@ -22,7 +19,7 @@ const Option = Select.Option;
 const { Column } = Table;
 
 //
-export default class ChargeManage extends React.Component {
+export default class AgentChargeManage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +36,7 @@ export default class ChargeManage extends React.Component {
                 key: i.toString(),
                 phoneNumber: i + 1,
                 numberStatus: i % 2,
-                agentName: '代理商' + i,
+                agentName: '广告主' + i,
                 leftTime: (i + 1) * 1000,
                 lastModified: "2018-05-14 11:49:0" + i % 60,
                 area: '地级市',
@@ -52,11 +49,15 @@ export default class ChargeManage extends React.Component {
         switch (key) {
             case "1":
                 // 小号管理
-                this.props.history.push("/numberManage");
+                this.props.history.push("/agentNumberManage");
                 break;
             case "2":
                 // 充值管理
-                this.props.history.push("/chargeManage");
+                this.props.history.push("/agentChargeManage");
+                break;
+            case "3":
+                // 充值管理
+                this.props.history.push("/agentBuyManage");
                 break;
             default:
                 break;
@@ -129,6 +130,7 @@ export default class ChargeManage extends React.Component {
                     >
                         <Menu.Item key="1">小号管理</Menu.Item>
                         <Menu.Item key="2">充值管理</Menu.Item>
+                        <Menu.Item key="3">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div className="wxYaoBody">
@@ -142,7 +144,7 @@ export default class ChargeManage extends React.Component {
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <span style={{marginLeft: 0}}>剩余时长：- 分钟</span>
+                                    <span style={{marginLeft: 0}}>剩余时长：5000 分钟</span>
                                 </div>
                                 <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
                                     <Search
