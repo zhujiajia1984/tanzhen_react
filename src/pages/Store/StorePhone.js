@@ -47,6 +47,9 @@ export default class StorePhone extends React.Component {
             case "代理商":
                 this.props.history.push("/agentNumberManage");
                 break;
+            case "广告主":
+                this.props.history.push("/clientPhoneSale");
+                break;
             default:
                 break;
         }
