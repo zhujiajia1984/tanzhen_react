@@ -86,6 +86,9 @@ export default class ClientPhoneSale extends React.Component {
     onLoadPeople() {
         this.setState({ dlgVisible: true, dlgTitle: '人群转化' });
     }
+    onEditSalePhone() {
+        this.setState({ dlgVisible: true, dlgTitle: '商家电话绑定' });
+    }
 
     render() {
         const expandRowData = (
@@ -106,13 +109,18 @@ export default class ClientPhoneSale extends React.Component {
             <span style={{marginLeft: 12, color:'rgba(0, 0, 0, 0.65)', fontSize: 12}}>剩余通话时长： </span>
             <span style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>1000</span>
             <span style={{marginLeft: 12, color:'rgba(0, 0, 0, 0.65)', fontSize: 12}}>
-                分钟，拨打一个小号前，请先绑定用户手机号，一次只能绑定一个手机号。
+                分钟
+            </span>
+            <span style={{marginLeft: 12, color:'red', fontSize: 12}}>
+                请先绑定商家电话或用户手机号！
             </span>
         </div>
         const clientPhoneNum = <div style={{color: 'black'}}>
             <span>13524776543</span>
             <a href="javascript:;" style={{marginLeft: 6}}>
-                <Icon type="edit" style={{color: 'rgba(0, 0, 0, 0.65)'}}/>
+                <Icon type="edit" style={{color: 'rgba(0, 0, 0, 0.65)'}} 
+                    onClick={this.onEditSalePhone.bind(this)}
+                />
             </a>
         </div>
         const clientPhoneNumDesp = <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -132,7 +140,7 @@ export default class ClientPhoneSale extends React.Component {
         </div>
         return (
             <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
-                topTitle="电话营销">
+                topTitle="电话营销" topHelpText="使用帮助" topHelpLink="/phoneAppDetail">
                 <div className="wxYaoMainStyle">
                     <Menu mode="inline" 
                         defaultSelectedKeys={['1']}
@@ -216,6 +224,28 @@ export default class ClientPhoneSale extends React.Component {
                                                     <Option key={3} value="p3">人群3</Option>
                                                     <Option key={4} value="p4">人群4</Option>
                                                 </Select>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                }
+                                {
+                                    (this.state.dlgTitle == "商家电话绑定") &&
+                                    <div>
+                                        <Row gutter={8}>
+                                            <Col span={6} style={{textAlign: 'right'}}>
+                                                <span>商家电话：</span>
+                                            </Col>
+                                            <Col span={18}>
+                                                <Input />
+                                            </Col>
+                                        </Row>
+                                        <Row gutter={8}>
+                                            <Col span={6} style={{textAlign: 'right'}}>
+                                            </Col>
+                                            <Col span={18} style={{marginTop: 8}}>
+                                                <div style={{color: 'rgba(0,0,0,0.45)', fontSize: 12}}>
+                                                    支持固话和手机号，固话格式为：021-68879927
+                                                </div>
                                             </Col>
                                         </Row>
                                     </div>

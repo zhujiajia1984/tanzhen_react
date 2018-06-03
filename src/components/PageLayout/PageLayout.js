@@ -127,6 +127,16 @@ class PageLayout extends React.Component {
 									</a>
 								</span>:""
 							}
+							{
+								(this.props.topHelpText)?
+								<span>
+									<a href="javascript:;" style={{fontSize: 12, marginLeft: 12}}
+										onClick={()=>{this.props.history.push(this.props.topHelpLink)}}
+									>
+										{this.props.topHelpText}
+									</a>
+								</span>:""
+							}
 						</div>
 						<div className="topRight">
 							<Dropdown overlay={
@@ -168,6 +178,8 @@ PageLayout.propTypes = {
     topTitle: PropTypes.string,
     topStatus: PropTypes.bool,
     topLink: PropTypes.string,
+    topHelpText: PropTypes.string,
+    topHelpLink: PropTypes.string,
 };
 PageLayout.defaultProps = {
     selMenu: ['系统首页'],
@@ -175,5 +187,7 @@ PageLayout.defaultProps = {
     collapsed: false,
     topTitle: "",
     topStatus: false,
-    topLink: ""
+    topLink: "",
+    topHelpText: "",
+    topHelpLink: "",
 };

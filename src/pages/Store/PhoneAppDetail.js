@@ -5,13 +5,13 @@ import { Menu, Button } from 'antd';
 
 //
 export default class PhoneAppDetail extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+    constructor(props) {
+        super(props);
+    }
 
-	render() {
-		return (
-			<PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
+    render() {
+        return (
+            <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
             	topTitle="应用市场">
 				<div className="storePhoneStyle">
 					<Menu mode="inline" 
@@ -56,15 +56,15 @@ export default class PhoneAppDetail extends React.Component {
 			                        <div className="detailcontent1">
 			                            <div>【1】开通要求：必须先向代理商申请小号并采购通话时长后才能开通电话营销应用；</div>
 			                            <div>【2】费用构成：小号月租费 + 通话费（按分钟）；</div>
-			                            <div>【3】注意事项：通话费指的是小号服务费，不包含电话费用，电话费用单独和运营商结算；</div>
+			                            <div>【3】注意事项：拨打一个小号前，请先绑定用户手机号，一次只能绑定一个手机号。；</div>
 			                        </div>
 			                    </div>
 			                    <div>
 			                        <div style={{fontSize: 16, fontWeight: 'bold'}}>功能简介：</div>
 			                        <div className="detailcontent1">
-			                        	<div>【1】导入人群：导入需要营销的人群后系统自动转化出可以电话营销的人群；</div>
-			                            <div>【2】绑定营销电话：需要把小号和营销电话绑定，呼出都必须使用绑定的号码；</div>
-			                            <div>【3】绑定消费者电话：需要把小号和消费者电话绑定，呼出号码仍为小号；</div>
+			                        	<div>【1】人群转化：导入需要营销的人群后系统自动转化出可以电话营销的人群；</div>
+			                            <div>【2】绑定商家电话：需要把小号和商家营销电话绑定，呼出都必须使用绑定的号码（支持固话）；</div>
+			                            <div>【3】绑定用户电话：需要把小号和用户电话绑定，呼出号码仍为小号；</div>
 			                            <div>【4】消费者回呼：即使已经解绑的消费者，仍然可以通过小号回呼；</div>
 			                        </div>
 			                    </div>
@@ -73,6 +73,6 @@ export default class PhoneAppDetail extends React.Component {
 					</div>
 				</div>
 			</PageLayout>
-		);
-	}
+        );
+    }
 }
