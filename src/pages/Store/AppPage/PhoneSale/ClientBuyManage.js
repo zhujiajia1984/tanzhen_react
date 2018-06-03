@@ -64,7 +64,7 @@ export default class ClientBuyManage extends React.Component {
     render() {
         return (
             <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
-                topTitle="电话营销">
+                topTitle="电话营销" topHelpText="使用帮助" topHelpLink="/phoneAppDetail">
             	<div className="wxYaoMainStyle">
             		<Menu mode="inline" 
                         defaultSelectedKeys={['2']}
