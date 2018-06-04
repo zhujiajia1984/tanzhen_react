@@ -46,6 +46,7 @@ export default class ClientPhoneSale extends React.Component {
                 phoneMAC: '00ec0ac8278' + i % 10,
                 phoneStatus: i,
                 detail: '备注' + i,
+                callNum: i,
             });
         }
         this.setState({ data: data });
@@ -61,6 +62,10 @@ export default class ClientPhoneSale extends React.Component {
             case "2":
                 // 采购管理
                 this.props.history.push("/clientBuyManage");
+                break;
+            case "3":
+                // 通话记录
+                this.props.history.push("/clientPhoneRecord");
                 break;
             default:
                 break;
@@ -149,6 +154,7 @@ export default class ClientPhoneSale extends React.Component {
                     >
                         <Menu.Item key="1">电销管理</Menu.Item>
                         <Menu.Item key="2">采购记录</Menu.Item>
+                        <Menu.Item key="3">通话记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <Card bordered={false} className="storeCardItem"
@@ -265,6 +271,13 @@ export default class ClientPhoneSale extends React.Component {
                                 <Column
                                     title="手机号"
                                     dataIndex="phoneNumber"
+                                />
+                                <Column
+                                    title="已通话次数"
+                                    dataIndex="callNum"
+                                    sorter={(a, b)=>{
+                                        return (a.callNum - b.callNum);
+                                    }}
                                 />
                                 <Column
                                     title="状态"

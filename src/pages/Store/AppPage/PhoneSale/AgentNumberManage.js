@@ -179,7 +179,7 @@ export default class AgentNumberManage extends React.Component {
 									}}
 								/>
 								<Column
-									title="小号区域"
+									title="小号归属地"
 									dataIndex="area"
 								/>
 								<Column

@@ -11,6 +11,7 @@ import {
     Select,
     Table,
     message,
+    Divider
 } from 'antd';
 
 // const
@@ -196,6 +197,10 @@ export default class AgentChargeManage extends React.Component {
                                         return <span>
                                             <a href="javascript:;" onClick={this.onOperate.bind(this, 'bind')}>
                                                 充值
+                                            </a>
+                                            <Divider type="vertical" />
+                                            <a href="javascript:;">
+                                                详情
                                             </a>
                                         </span>
                                     }}

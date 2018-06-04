@@ -195,6 +195,10 @@ export default class ChargeManage extends React.Component {
                                             <a href="javascript:;" onClick={this.onOperate.bind(this, 'bind')}>
                                                 充值
                                             </a>
+                                            <Divider type="vertical" />
+                                            <a href="javascript:;">
+                                                详情
+                                            </a>
                                         </span>
                                     }}
                                 />

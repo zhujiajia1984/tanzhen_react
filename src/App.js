@@ -19,6 +19,7 @@ import AgentChargeManage from './pages/Store/AppPage/PhoneSale/AgentChargeManage
 import AgentBuyManage from './pages/Store/AppPage/PhoneSale/AgentBuyManage';
 import ClientBuyManage from './pages/Store/AppPage/PhoneSale/ClientBuyManage';
 import ClientPhoneSale from './pages/Store/AppPage/PhoneSale/ClientPhoneSale';
+import ClientPhoneRecord from './pages/Store/AppPage/PhoneSale/ClientPhoneRecord';
 import WxYao from './pages/Store/AppPage/WxYao/WxYao';
 import WiseDsp from './pages/Store/AppPage/WiseDsp/WiseDsp';
 
@@ -49,6 +50,7 @@ export default class App extends React.Component {
                     <Route path="/agentBuyManage" component={AgentBuyManage} />
                     <Route path="/clientPhoneSale" component={ClientPhoneSale} />
                     <Route path="/clientBuyManage" component={ClientBuyManage} />
+                    <Route path="/clientPhoneRecord" component={ClientPhoneRecord} />
                     <Route path="/wxYao" component={WxYao} />
                     <Route path="/wisedsp" component={WiseDsp} />
                 </div>
