@@ -37,9 +37,10 @@ export default class ClientPhoneRecord extends React.Component {
                 key: i.toString(),
                 beginTime: '2018-05-14 11:0' + i,
                 callTime: '1000' + i,
-                mac: '11:22:33:44:5' + i % 10,
+                mac: '11223344****',
                 detail: '备注' + i,
                 number: '1352488654' + i % 10,
+                virtual: '17019876543'
             });
         }
         this.setState({ data: data });
@@ -98,6 +99,9 @@ export default class ClientPhoneRecord extends React.Component {
                                     />
                                     <Button type="primary" style={{marginLeft: 8}}>查询</Button>
                                     <span style={{marginLeft: 12}}>总通话时长：30000分钟</span>
+                                    <div style={{display: 'flex', flex: 1, flexDirection: 'row-reverse'}}>
+                                        <a href="javascript:;">下载</a>
+                                    </div>
                                 </div>
                             </div>
                             <Table dataSource={this.state.data}
@@ -121,6 +125,10 @@ export default class ClientPhoneRecord extends React.Component {
                                 <Column
                                     title="商家电话"
                                     dataIndex="number"
+                                />
+                                <Column
+                                    title="小号号码"
+                                    dataIndex="virtual"
                                 />
                                 <Column
                                     title="用户手机MAC"

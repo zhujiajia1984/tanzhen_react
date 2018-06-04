@@ -43,7 +43,7 @@ export default class ClientPhoneSale extends React.Component {
             data.push({
                 key: i.toString(),
                 phoneNumber: "130****543" + i % 10,
-                phoneMAC: '00ec0ac8278' + i % 10,
+                phoneMAC: '00ec0a' + i % 10 + '****',
                 phoneStatus: i,
                 detail: '备注' + i,
                 callNum: i,
@@ -265,7 +265,7 @@ export default class ClientPhoneSale extends React.Component {
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
                                 <Column
-                                    title="手机MAC"
+                                    title="用户手机MAC"
                                     dataIndex="phoneMAC"
                                 />
                                 <Column
