@@ -265,7 +265,7 @@ export default class ClientPhoneSale extends React.Component {
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
                                 <Column
-                                    title="用户手机MAC"
+                                    title="手机MAC"
                                     dataIndex="phoneMAC"
                                 />
                                 <Column

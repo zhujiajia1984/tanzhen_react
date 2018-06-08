@@ -30,14 +30,26 @@ export default class StorePhone extends React.Component {
                     status: '已开通',
                     tag: '广告主',
                     icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
+                }, {
+                    title: '精准短信',
+                    desp: '短信营销，精准触达',
+                    status: '已开通',
+                    tag: '精准短信广告主',
+                    icon: 'https://radar.weiquaninfo.cn/radar/assets/images/sms_icon.png'
                 }
             ],
         }
     }
 
     //
-    onDetail() {
-        this.props.history.push("/phoneAppDetail");
+    onDetail(title) {
+        if (title == "精准短信") {
+            this.props.history.push("/phoneAppDetail", { type: 'sms' });
+        }
+        if (title == "电话营销") {
+            this.props.history.push("/phoneAppDetail", { type: 'phone' });
+        }
+
     }
     onEnterApp(type) {
         switch (type) {
@@ -49,6 +61,9 @@ export default class StorePhone extends React.Component {
                 break;
             case "广告主":
                 this.props.history.push("/clientPhoneSale");
+                break;
+            case "精准短信广告主":
+                this.props.history.push("/clientSmsSend");
                 break;
             default:
                 break;
@@ -84,7 +99,7 @@ export default class StorePhone extends React.Component {
 											<Card bordered={true} className="storeCardItem"
 												hoverable={true} 
 												actions={[
-													<div key="1" onClick={this.onDetail.bind(this)}>
+													<div key="1" onClick={this.onDetail.bind(this, item.title)}>
 														<span style={{marginLeft: 8}}>查看详情</span>
 													</div>,
 													<div key="2" onClick={this.onEnterApp.bind(this, item.tag)}>
