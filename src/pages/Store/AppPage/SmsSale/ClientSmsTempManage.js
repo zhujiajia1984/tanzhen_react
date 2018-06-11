@@ -10,7 +10,8 @@ import {
     Row,
     Col,
     Modal,
-    Radio
+    Radio,
+    Table
 } from 'antd';
 
 // const
@@ -18,6 +19,7 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
 const { TextArea } = Input;
+const { Column } = Table;
 
 //
 export default class ClientSmsTempManage extends React.Component {
@@ -26,6 +28,7 @@ export default class ClientSmsTempManage extends React.Component {
         this.state = {
             dlgTitle: '短信签名',
             visible: false,
+            data: [],
         }
     }
 
@@ -42,6 +45,15 @@ export default class ClientSmsTempManage extends React.Component {
                     break;
             }
         }
+        // 
+        let data = [];
+        for (let i = 0; i < 5; i++) {
+            data.push({
+                key: i.toString(),
+                content: '新订单通知：您有一个新订单{1}，请及时登录处理。'
+            });
+        }
+        this.setState({ data: data });
     }
 
 
@@ -79,6 +91,9 @@ export default class ClientSmsTempManage extends React.Component {
     onBack() {
         this.props.history.push("/clientSmsTemplate");
     }
+    onImportLib() {
+        this.setState({ dlgVisible: true, dlgTitle: '快捷模板库' });
+    }
 
     render() {
         return (
@@ -90,7 +105,7 @@ export default class ClientSmsTempManage extends React.Component {
                         style={{ width: 128, backgroundColor: '#fafafa'}}
                         onClick={this.onMenu.bind(this)}
                     >
-                        <Menu.Item key="1">短信发送</Menu.Item>
+                        <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
                     </Menu>
@@ -122,11 +137,7 @@ export default class ClientSmsTempManage extends React.Component {
                                         模板类型：
                                     </Col>
                                     <Col span={10}>
-                                        <RadioGroup defaultValue="a">
-                                            <RadioButton value="a">会员服务模板</RadioButton>
-                                            <RadioButton value="b" disabled>验证类模板</RadioButton>
-                                            <RadioButton value="c" disabled>通知类模板</RadioButton>
-                                        </RadioGroup>
+                                        <span>会员服务模板</span>
                                     </Col>
                                 </Row>
                                 <Row gutter={8} style={{marginTop:24, display: 'flex', alignItems: 'center'}}>
@@ -134,16 +145,15 @@ export default class ClientSmsTempManage extends React.Component {
                                         短信签名：
                                     </Col>
                                     <Col span={10}>
-                                        <Select defaultValue="a" style={{width: '100%'}}>
-                                            <Option value="a">新数网络</Option>
-                                        </Select>
+                                        <span>新数网络</span>
                                     </Col>
                                 </Row>
                                 <Row gutter={8} style={{marginTop:24, display: 'flex', alignItems: 'center'}}>
                                     <Col span={4} style={{textAlign: 'right'}}>
-                                        短信内容：
+                                        短信模板：
                                     </Col>
                                     <Col span={10}>
+                                        <a href="javascript:;" onClick={this.onImportLib.bind(this)}>导入快捷模板库</a>
                                         <TextArea rows={4}></TextArea>
                                     </Col>
                                 </Row>
@@ -182,28 +192,30 @@ export default class ClientSmsTempManage extends React.Component {
                                 onOk={this.onConfirmDlg.bind(this)}
                                 cancelText="取消"
                                 okText="确定"
+                                footer={null}
                                 confirmLoading={this.state.dlgConfirmLoading}
                             >
                                 {
-                                    (this.state.dlgTitle == "短信签名") &&
+                                    (this.state.dlgTitle == "快捷模板库") &&
                                     <div>
-                                        <Row gutter={8}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                                短信签名：
-                                            </Col>
-                                            <Col span={18}>
-                                                <Input />
-                                            </Col>
-                                        </Row>
-                                        <Row gutter={8} style={{marginTop: 8}}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                            </Col>
-                                            <Col span={18}>
-                                                <span style={{color: 'rgba(0, 0, 0, 0.45)'}}>
-                                                    公司或品牌名称，限2-12个字符，不能为纯数字。
-                                                </span>
-                                            </Col>
-                                        </Row>
+                                        <Table dataSource={this.state.data} bordered={true}
+                                        >
+                                            <Column
+                                                title="模板内容"
+                                                dataIndex="content"
+                                            />
+                                            <Column
+                                                title="操作"
+                                                dataIndex="action"
+                                                render={(text, record) => {
+                                                    return <span>
+                                                        <a href="javascript:;">
+                                                            导入
+                                                        </a>
+                                                    </span>
+                                                }}
+                                            />
+                                        </Table>
                                     </div>
                                 }
                             </Modal>

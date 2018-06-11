@@ -11,6 +11,7 @@ import {
     Select,
     Table,
     message,
+    Badge
 } from 'antd';
 
 // const
@@ -40,10 +41,12 @@ export default class ClientSmsSend extends React.Component {
         for (let i = 0; i < 50; i++) {
             data.push({
                 key: i.toString(),
-                phoneNumber: "130****543" + i % 10,
-                phoneMAC: '00ec0a' + i % 10 + '****',
-                callNum: i,
-                detail: '备注' + i,
+                eventName: "活动名称" + i,
+                status: i % 2,
+                sendTime: '2017-05-06',
+                sendNumber: (i + 1) * 1000,
+                successNumber: (i + 1) * 1000 - i,
+                kouNumber: (i + 1) * 1000 - i,
             });
         }
         this.setState({ data: data });
@@ -62,10 +65,11 @@ export default class ClientSmsSend extends React.Component {
     }
     //
     onLoadPeople() {
-        this.setState({ dlgVisible: true, dlgTitle: '人群转化' });
+        // this.setState({ dlgVisible: true, dlgTitle: '人群转化' });
+        this.props.history.push("/clientSmsEvent");
     }
     onSmsBind() {
-        this.setState({ dlgVisible: true, dlgTitle: '绑定通话' });
+        this.props.history.push("/clientSmsRecord");
     }
 
 
@@ -106,6 +110,18 @@ export default class ClientSmsSend extends React.Component {
             selectedRowKeys: this.state.selectedRowKeys,
             onChange: this.onSelectChange.bind(this),
         };
+        const expandRowData = (
+            <div style={{fontSize: 14}}>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <div style={{fontWeight: 'bold'}}>
+                            短信内容：
+                        </div>
+                    </Col>
+                </Row>
+                <div className="wxYaolink">【新数网络】尊敬的用户，您创建的短信模板ID：34567已通过审核，请登录雷达系统进行使用。</div>
+            </div>
+        )
         return (
             <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
                 topTitle="精准短信" topHelpText="使用帮助" topHelpLink="/phoneAppDetail">
@@ -115,7 +131,7 @@ export default class ClientSmsSend extends React.Component {
                         style={{ width: 128, backgroundColor: '#fafafa'}}
                         onClick={this.onMenu.bind(this)}
                     >
-                        <Menu.Item key="1">短信发送</Menu.Item>
+                        <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
                     </Menu>
@@ -133,14 +149,13 @@ export default class ClientSmsSend extends React.Component {
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <Button type="primary" onClick={this.onLoadPeople.bind(this)}>人群转化</Button>
-                                    <span style={{marginLeft: 12}}>人群包名称：昨日新访客+前日新访客</span>
-                                    <span style={{marginLeft: 12}}>人群数量：5000</span>
-                                    <span style={{marginLeft: 12}}>转化手机数：2000</span>
+                                    <Button type="primary" onClick={this.onLoadPeople.bind(this)}>
+                                        新建活动
+                                    </Button>
                                 </div>
                                 <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
                                     <Search
-                                        placeholder="手机MAC/手机号 模糊搜索"
+                                        placeholder="活动名称 模糊搜索"
                                         enterButton
                                         style={{marginLeft: 10, width: 300}}
                                     />
@@ -188,28 +203,62 @@ export default class ClientSmsSend extends React.Component {
                             </Modal>
                             <Table dataSource={this.state.data}
                                 bordered={false}
-                                rowSelection={rowSelection}
-                                pagination={this.state.pagination}
+                                expandedRowRender={(record) => {
+                                    return expandRowData;
+                                }}
+                                // rowSelection={rowSelection}
+                                // pagination={this.state.pagination}
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
                                 <Column
-                                    title="手机MAC"
-                                    dataIndex="phoneMAC"
+                                    title="活动名称"
+                                    dataIndex="eventName"
                                 />
                                 <Column
-                                    title="手机号"
-                                    dataIndex="phoneNumber"
-                                />
-                                <Column
-                                    title="已发送次数"
-                                    dataIndex="callNum"
-                                    sorter={(a, b)=>{
-                                        return (a.callNum - b.callNum);
+                                    title="发送状态"
+                                    dataIndex="status"
+                                    filters={[{
+                                        text: '发送中',
+                                        value: 0
+                                    },{
+                                        text: '已发送',
+                                        value: 1
+                                    }]}
+                                    filterMultiple={false}
+                                    onFilter={(value, record)=>{
+                                        return (record.status == value);
+                                    }}
+                                    render={(text)=>{
+                                        if(text == 0){
+                                            return <div>
+                                                <Badge status="default" text="发送中" />
+                                            </div>
+                                        }else if(text == 1){
+                                            return <Badge status="success" text="已发送" />;
+                                        }
                                     }}
                                 />
                                 <Column
-                                    title="备注"
-                                    dataIndex="detail"
+                                    title="发送人群数量"
+                                    dataIndex="sendNumber"
+                                />
+                                <Column
+                                    title="发送成功人数"
+                                    dataIndex="successNumber"
+                                />
+                                <Column
+                                    title="计费条数"
+                                    dataIndex="kouNumber"
+                                />
+                                <Column
+                                    title="发送时间"
+                                    dataIndex="sendTime"
+                                    sorter={(a, b)=>{
+                                        return (a.sendTime - b.sendTime);
+                                    }}
+                                    render={(text)=>(
+                                        <div title="2018-05-06 14:11:06">{text}</div>
+                                    )}
                                 />
                                 <Column
                                     title="操作"
@@ -217,7 +266,7 @@ export default class ClientSmsSend extends React.Component {
                                     render={() => {
                                         return <span>
                                             <a href="javascript:;" onClick={this.onSmsBind.bind(this)}>
-                                                发送短信
+                                                详情
                                             </a>
                                         </span>
                                     }}

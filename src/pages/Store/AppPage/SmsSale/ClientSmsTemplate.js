@@ -99,7 +99,7 @@ export default class ClientSmsTemplate extends React.Component {
         let smsSignTitle = <div>
     		<span>短信签名</span>
     		<span style={{marginLeft: 12, fontSize: 12 , color: 'rgba(0, 0, 0, 0.45)'}}>
-    			显示在短信的【】中
+    			必填项，显示在短信头部的【】中
     		</span>
     	</div>
         return (
@@ -111,7 +111,7 @@ export default class ClientSmsTemplate extends React.Component {
                         style={{ width: 128, backgroundColor: '#fafafa'}}
                         onClick={this.onMenu.bind(this)}
                     >
-                        <Menu.Item key="1">短信发送</Menu.Item>
+                        <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
                     </Menu>

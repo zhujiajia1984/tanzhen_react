@@ -24,6 +24,7 @@ import ClientSmsSend from './pages/Store/AppPage/SmsSale/ClientSmsSend';
 import ClientSmsTemplate from './pages/Store/AppPage/SmsSale/ClientSmsTemplate';
 import ClientSmsTempManage from './pages/Store/AppPage/SmsSale/ClientSmsTempManage';
 import ClientSmsRecord from './pages/Store/AppPage/SmsSale/ClientSmsRecord';
+import ClientSmsEvent from './pages/Store/AppPage/SmsSale/ClientSmsEvent';
 import WxYao from './pages/Store/AppPage/WxYao/WxYao';
 import WiseDsp from './pages/Store/AppPage/WiseDsp/WiseDsp';
 
@@ -59,6 +60,7 @@ export default class App extends React.Component {
                     <Route path="/clientSmsTemplate" component={ClientSmsTemplate} />
                     <Route path="/clientSmsTempManage" component={ClientSmsTempManage} />
                     <Route path="/clientSmsRecord" component={ClientSmsRecord} />
+                    <Route path="/clientSmsEvent" component={ClientSmsEvent} />
                     <Route path="/wxYao" component={WxYao} />
                     <Route path="/wisedsp" component={WiseDsp} />
                 </div>

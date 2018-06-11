@@ -42,12 +42,13 @@ export default class ClientSmsRecord extends React.Component {
         for (let i = 0; i < 50; i++) {
             data.push({
                 key: i.toString(),
-                beginTime: '2018-05-14 11:0' + i,
-                tempName: '模板' + i,
-                tempType: '会员服务',
-                tempContent: '【新数雷达】模板内容{1}...',
-                status: i % 3,
-                tempID: '1234' + i,
+                sendTime: '2018-05-14 11:02:1' + i % 10,
+                receiveNumber: '139****1345',
+                sendStatus: i % 2,
+                content: '【新数雷达】欢迎注册雷达平台账号，您的验证码为0145，...',
+                chargeNum: i % 2 + 1,
+                receiveMAC: '1122334' + i % 10 + '****',
+                eventName: '活动名称' + i,
             });
         }
         this.setState({ data: data });
@@ -111,42 +112,33 @@ export default class ClientSmsRecord extends React.Component {
                         style={{ width: 128, backgroundColor: '#fafafa'}}
                         onClick={this.onMenu.bind(this)}
                     >
-                        <Menu.Item key="1">短信发送</Menu.Item>
+                        <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
-                        <Card bordered={false} className="storeCardItem"
-                            title={smsSignTitle} extra={<a href="javascript:;" 
-                             onClick={this.onEditSign.bind(this)}>编辑</a>}
-                        >
-                            <div>新数雷达</div>
-                        </Card>
                         <div className="wxYaoBody">
                             <div className="wxYaoTitle">
                                 <div className="wxYaoTitleArea">
-                                    <span style={{fontSize: 16, marginBottom: 16, flex: 1, color: 'rgba(0,0,0,0.85)'}}>
-                                        短信模板
+                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1, color: 'rgba(0,0,0,0.85)'}}>
+                                        发送记录
                                     </span>
                                 </div>
+                                <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 24}}>
+                                    可查询短信发送记录。
+                                </span>
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <Button type="primary" onClick={this.onTemplate.bind(this, 'add')}>
-                                        新建模板
-                                    </Button>
-                                    <span style={{marginLeft: 12}}>审核结果通知手机号：13524676543</span>
-                                    <Icon type="edit" style={{color: 'rgba(0, 0, 0, 0.65)', marginLeft: 6}} 
-                                        className="TempEditNumber"
-                                        onClick={this.onBindPhone.bind(this)}
+                                    <span style={{marginLeft: 0}}>发送时间：</span>
+                                    <RangePicker
+                                      defaultValue={[moment('2018/06/10', dateFormat), moment('2018/06/10', dateFormat)]}
+                                      format={dateFormat}
                                     />
-                                </div>
-                                <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
-                                    <Search
-                                        placeholder="模板ID/模板名称 模糊搜索"
-                                        enterButton
-                                        style={{marginLeft: 10, width: 300}}
-                                    />
+                                    <span style={{marginLeft: 24}}>接收号码/接收MAC/活动名称：</span>
+                                    <Input style={{width: 180}}/>
+                                    <Button type="primary" style={{marginLeft: 24}}>查询</Button>
+                                    <span style={{marginLeft: 12}}>总计费条数：30000</span>
                                 </div>
                             </div>
                             <Modal
@@ -220,75 +212,57 @@ export default class ClientSmsRecord extends React.Component {
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
                                 <Column
-                                    title="模板ID"
-                                    dataIndex="tempID"
+                                    title="发送时间"
+                                    dataIndex="sendTime"
                                 />
                                 <Column
-                                    title="模板名称"
-                                    dataIndex="tempName"
+                                    title="接收号码"
+                                    dataIndex="receiveNumber"
                                 />
                                 <Column
-                                    title="模板类型"
-                                    dataIndex="tempType"
+                                    title="接收MAC"
+                                    dataIndex="receiveMAC"
                                 />
                                 <Column
-                                    title="模板内容"
-                                    dataIndex="tempContent"
+                                    title="活动名称"
+                                    dataIndex="eventName"
+                                />
+                                <Column
+                                    title="发送状态"
+                                    dataIndex="sendStatus"
+                                    filters={[{
+                                        text: '成功',
+                                        value: 1
+                                    },{
+                                        text: '失败',
+                                        value: 0
+                                    }]}
+                                    filterMultiple={false}
+                                    onFilter={(value, record)=>{
+                                        return (record.sendStatus == value);
+                                    }}
+                                    render={(text)=>{
+                                        if(text == 0){
+                                            return <div title="鼠标悬停显示具体失败原因">
+                                                <Badge status="error" text="失败" />
+                                            </div>
+                                        }else if(text == 1){
+                                            return <Badge status="success" text="成功" />;
+                                        }
+                                    }}
+                                />
+                                <Column
+                                    title="发送内容"
+                                    dataIndex="content"
                                     render={(text)=>(
                                         <div title="显示全部内容">{text}</div>
                                     )}
                                 />
                                 <Column
-                                    title="创建时间"
-                                    dataIndex="beginTime"
+                                    title="计费条数"
+                                    dataIndex="chargeNum"
                                     sorter={(a, b)=>{
                                         return (a.beginTime - b.beginTime);
-                                    }}
-                                />
-                                <Column
-                                    title="审核状态"
-                                    dataIndex="status"
-                                    filters={[{
-                                        text: '待审核',
-                                        value: 0
-                                    },{
-                                        text: '审核通过',
-                                        value: 1
-                                    }, {
-                                        text: '审核失败',
-                                        value: 2
-                                    }]}
-                                    filterMultiple={false}
-                                    onFilter={(value, record)=>{
-                                        return (record.status == value);
-                                    }}
-                                    render={(text)=>{
-                                        if(text == 0){
-                                            return <div title="工作日审核2小时以内">
-                                                <Badge status="default" text="待审核" />
-                                            </div>
-                                        }else if(text == 1){
-                                            return <Badge status="success" text="审核通过" />;
-                                        }else{
-                                            return <div title="失败原因">
-                                                <Badge status="error" text="审核失败" />
-                                            </div> 
-                                        }
-                                    }}
-                                />
-                                <Column
-                                    title="操作"
-                                    dataIndex="action"
-                                    render={(text, record) => {
-                                        return <span>
-                                            <a href="javascript:;" onClick={this.onTemplate.bind(this, 'edit')}>
-                                                编辑
-                                            </a>
-                                            <Divider type="vertical" />
-                                            <a href="javascript:;">
-                                                删除
-                                            </a>
-                                        </span>
                                     }}
                                 />
                             </Table>

@@ -125,7 +125,6 @@ export default class PhoneAppDetail extends React.Component {
                                 		this.state.type == 'sms' &&
                                 		<div className="detailcontent1">
 				                        	<div>【1】人群转化：导入需要营销的人群后系统自动转化出可以短信营销的人群；</div>
-				                        	<div>【2】人群数量：每次转化都会把之前转化的人群清空，然后重新导入；</div>
 				                        </div>
                                 	}
 			                    </div>
