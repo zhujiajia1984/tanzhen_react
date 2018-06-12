@@ -26,6 +26,10 @@ import ClientSmsTempManage from './pages/Store/AppPage/SmsSale/ClientSmsTempMana
 import ClientSmsRecord from './pages/Store/AppPage/SmsSale/ClientSmsRecord';
 import ClientSmsEvent from './pages/Store/AppPage/SmsSale/ClientSmsEvent';
 import ClientSmsBuyManage from './pages/Store/AppPage/SmsSale/ClientSmsBuyManage';
+import MarketSmsSend from './pages/Store/AppPage/SmsSale/MarketSmsSend';
+import MarketSmsTemplate from './pages/Store/AppPage/SmsSale/MarketSmsTemplate';
+import AgentSmsSend from './pages/Store/AppPage/SmsSale/AgentSmsSend';
+import AgentSmsTemplate from './pages/Store/AppPage/SmsSale/AgentSmsTemplate';
 import WxYao from './pages/Store/AppPage/WxYao/WxYao';
 import WiseDsp from './pages/Store/AppPage/WiseDsp/WiseDsp';
 
@@ -63,6 +67,10 @@ export default class App extends React.Component {
                     <Route path="/clientSmsRecord" component={ClientSmsRecord} />
                     <Route path="/clientSmsEvent" component={ClientSmsEvent} />
                     <Route path="/clientSmsBuyManage" component={ClientSmsBuyManage} />
+                    <Route path="/marketSmsSend" component={MarketSmsSend} />
+                    <Route path="/marketSmsTemplate" component={MarketSmsTemplate} />
+                    <Route path="/agentSmsSend" component={AgentSmsSend} />
+                    <Route path="/agentSmsTemplate" component={AgentSmsTemplate} />
                     <Route path="/wxYao" component={WxYao} />
                     <Route path="/wisedsp" component={WiseDsp} />
                 </div>

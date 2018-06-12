@@ -29,7 +29,7 @@ import moment from 'moment';
 const { RangePicker } = DatePicker;
 
 //
-export default class ClientSmsTemplate extends React.Component {
+export default class AgentSmsTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,6 +51,7 @@ export default class ClientSmsTemplate extends React.Component {
                 tempContent: '【新数雷达】模板内容{1}...',
                 status: i % 3,
                 tempID: '1234' + i,
+                clientName: '广告主名称' + i,
             });
         }
         this.setState({ data: data });
@@ -61,19 +62,11 @@ export default class ClientSmsTemplate extends React.Component {
         switch (key) {
             case "1":
                 // 短信发送
-                this.props.history.push("/clientSmsSend");
+                this.props.history.push("/agentSmsSend");
                 break;
             case "2":
                 // 短信模板
-                this.props.history.push("/clientSmsTemplate");
-                break;
-            case "3":
-                // 发送记录
-                this.props.history.push("/clientSmsRecord");
-                break;
-            case "4":
-                // 采购记录
-                this.props.history.push("/clientSmsBuyManage");
+                this.props.history.push("/agentSmsTemplate");
                 break;
             default:
                 break;
@@ -103,12 +96,6 @@ export default class ClientSmsTemplate extends React.Component {
     }
 
     render() {
-        let smsSignTitle = <div>
-    		<span>短信签名</span>
-    		<span style={{marginLeft: 12, fontSize: 12 , color: 'rgba(0, 0, 0, 0.45)'}}>
-    			必填项，显示在短信头部的【】中
-    		</span>
-    	</div>
         const expandRowData = (
             <div style={{fontSize: 14}}>
                 <Row gutter={16}>
@@ -132,8 +119,6 @@ export default class ClientSmsTemplate extends React.Component {
                     >
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
-                        <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>
@@ -142,34 +127,24 @@ export default class ClientSmsTemplate extends React.Component {
                                 <Breadcrumb.Item>短信模板</Breadcrumb.Item>
                              </Breadcrumb>
                         </div>
-                    	<Card bordered={false} className="storeCardItem"
-                            title={smsSignTitle} extra={<a href="javascript:;" 
-                             onClick={this.onEditSign.bind(this)}>编辑</a>}
-                        >
-                            <div>新数雷达</div>
-                        </Card>
                         <div className="wxYaoBody">
                             <div className="wxYaoTitle">
                                 <div className="wxYaoTitleArea">
-                                    <span style={{fontSize: 16, marginBottom: 16, flex: 1, color: 'rgba(0,0,0,0.85)'}}>
+                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1, color: 'rgba(0,0,0,0.85)'}}>
                                         短信模板
                                     </span>
                                 </div>
+                                <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 8}}>
+                                    可查询所有客户的短信模板。
+                                </span>
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <Button type="primary" onClick={this.onTemplate.bind(this, 'add')}>
-                                    	新建模板
-                                    </Button>
-                                    <span style={{marginLeft: 12}}>审核结果通知手机号：13524676543</span>
-                                    <Icon type="edit" style={{color: 'rgba(0, 0, 0, 0.65)', marginLeft: 6}} 
-					                    className="TempEditNumber"
-					                    onClick={this.onBindPhone.bind(this)}
-					                />
+                                    <span>模板总数：1000，其中已审核：500，待审核：200，审核失败： 300</span>
                                 </div>
                                 <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
                                     <Search
-                                        placeholder="模板ID/模板名称 模糊搜索"
+                                        placeholder="模板ID/模板名称/客户名称 模糊搜索"
                                         enterButton
                                         style={{marginLeft: 10, width: 300}}
                                     />
@@ -248,13 +223,17 @@ export default class ClientSmsTemplate extends React.Component {
                                 }}
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
-                            	<Column
+                                <Column
                                     title="模板ID"
                                     dataIndex="tempID"
                                 />
                                 <Column
                                     title="模板名称"
                                     dataIndex="tempName"
+                                />
+                                <Column
+                                    title="客户名称"
+                                    dataIndex="clientName"
                                 />
                                 <Column
                                     title="模板类型"
@@ -313,21 +292,6 @@ export default class ClientSmsTemplate extends React.Component {
                                         return <div title="2018-05-14 11:12:23">
                                             {text}
                                         </div>
-                                    }}
-                                />
-                                <Column
-                                    title="操作"
-                                    dataIndex="action"
-                                    render={(text, record) => {
-                                        return <span>
-                                            <a href="javascript:;" onClick={this.onTemplate.bind(this, 'edit')}>
-                                                编辑
-                                            </a>
-                                            <Divider type="vertical" />
-                                            <a href="javascript:;">
-                                                删除
-                                            </a>
-                                        </span>
                                     }}
                                 />
                             </Table>

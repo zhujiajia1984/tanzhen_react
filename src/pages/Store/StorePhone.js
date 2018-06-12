@@ -30,19 +30,22 @@ export default class StorePhone extends React.Component {
                     status: '已开通',
                     tag: '广告主',
                     icon: 'https://radar.weiquaninfo.cn/radar/assets/images/phone_icon.png'
-                }, {
+                },
+                {
                     title: '精准短信',
                     desp: '短信营销，精准触达',
                     status: '已开通',
                     tag: '精准短信新数运营',
                     icon: 'https://radar.weiquaninfo.cn/radar/assets/images/sms_icon.png'
-                }, {
+                },
+                {
                     title: '精准短信',
                     desp: '短信营销，精准触达',
                     status: '已开通',
                     tag: '精准短信代理商',
                     icon: 'https://radar.weiquaninfo.cn/radar/assets/images/sms_icon.png'
-                }, {
+                },
+                {
                     title: '精准短信',
                     desp: '短信营销，精准触达',
                     status: '已开通',
@@ -76,6 +79,12 @@ export default class StorePhone extends React.Component {
                 break;
             case "精准短信广告主":
                 this.props.history.push("/clientSmsSend");
+                break;
+            case "精准短信新数运营":
+                this.props.history.push("/marketSmsSend");
+                break;
+            case "精准短信代理商":
+                this.props.history.push("/agentSmsSend");
                 break;
             default:
                 break;

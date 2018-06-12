@@ -22,7 +22,7 @@ const Option = Select.Option;
 const { Column } = Table;
 
 //
-export default class ClientSmsSend extends React.Component {
+export default class AgentSmsSend extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,6 +49,7 @@ export default class ClientSmsSend extends React.Component {
                 sendNumber: (i + 1) * 1000,
                 successNumber: (i + 1) * 1000 - i,
                 kouNumber: (i + 1) * 1000 - i,
+                clientName: '广告主名称' + i,
             });
         }
         this.setState({ data: data });
@@ -79,19 +80,11 @@ export default class ClientSmsSend extends React.Component {
         switch (key) {
             case "1":
                 // 短信发送
-                this.props.history.push("/clientSmsSend");
+                this.props.history.push("/agentSmsSend");
                 break;
             case "2":
                 // 短信模板
-                this.props.history.push("/clientSmsTemplate");
-                break;
-            case "3":
-                // 发送记录
-                this.props.history.push("/clientSmsRecord");
-                break;
-            case "4":
-                // 采购记录
-                this.props.history.push("/clientSmsBuyManage");
+                this.props.history.push("/agentSmsTemplate");
                 break;
             default:
                 break;
@@ -139,8 +132,6 @@ export default class ClientSmsSend extends React.Component {
                     >
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
-                        <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>
@@ -150,25 +141,23 @@ export default class ClientSmsSend extends React.Component {
                              </Breadcrumb>
                         </div>
                         <div className="wxYaoBody">
-                            <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
-                                <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <span style={{color:'rgba(0, 0, 0, 0.65)', fontSize: 12}}>
-                                        短信剩余条数：
-                                    </span>
-                                    <span style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>
-                                        5000
+                            <div className="wxYaoTitle">
+                                <div className="wxYaoTitleArea">
+                                    <span style={{fontSize: 16, marginBottom: 8, flex: 1, color: 'rgba(0,0,0,0.85)'}}>
+                                        短信活动
                                     </span>
                                 </div>
+                                <span style={{color: 'rgba(0, 0, 0, 0.45)', marginBottom: 8}}>
+                                    可查询所有客户的短信活动。
+                                </span>
                             </div>
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
-                                    <Button type="primary" onClick={this.onLoadPeople.bind(this)}>
-                                        新建活动
-                                    </Button>
+                                    <span>活动总数：1000，其中已发送：500，发送中：500</span>
                                 </div>
                                 <div style={{display: 'flex', flexDirection: 'row-reverse', alignItems: 'center'}}>
                                     <Search
-                                        placeholder="活动名称 模糊搜索"
+                                        placeholder="活动名称/客户名称 模糊搜索"
                                         enterButton
                                         style={{marginLeft: 10, width: 300}}
                                     />
@@ -228,6 +217,10 @@ export default class ClientSmsSend extends React.Component {
                                     dataIndex="eventName"
                                 />
                                 <Column
+                                    title="客户名称"
+                                    dataIndex="clientName"
+                                />
+                                <Column
                                     title="发送状态"
                                     dataIndex="status"
                                     filters={[{
@@ -275,17 +268,6 @@ export default class ClientSmsSend extends React.Component {
                                     render={(text)=>(
                                         <div title="2018-05-06 14:11:06">{text}</div>
                                     )}
-                                />
-                                <Column
-                                    title="操作"
-                                    dataIndex="action"
-                                    render={() => {
-                                        return <span>
-                                            <a href="javascript:;" onClick={this.onSmsBind.bind(this)}>
-                                                详情
-                                            </a>
-                                        </span>
-                                    }}
                                 />
                             </Table>
                         </div>
