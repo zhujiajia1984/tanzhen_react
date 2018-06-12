@@ -11,8 +11,10 @@ import {
     Select,
     Table,
     message,
-    Badge
+    Badge,
+    Breadcrumb
 } from 'antd';
+import { Link } from 'react-router-dom';
 
 // const
 const Search = Input.Search;
@@ -87,6 +89,10 @@ export default class ClientSmsSend extends React.Component {
                 // 发送记录
                 this.props.history.push("/clientSmsRecord");
                 break;
+            case "4":
+                // 采购记录
+                this.props.history.push("/clientSmsBuyManage");
+                break;
             default:
                 break;
         }
@@ -134,8 +140,15 @@ export default class ClientSmsSend extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
+                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
+                        <div style={{marginTop: '-16px', marginBottom: '8px'}}>
+                            <Breadcrumb>
+                                <Breadcrumb.Item><Link to="/store">应用市场</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item>短信活动</Breadcrumb.Item>
+                             </Breadcrumb>
+                        </div>
                         <div className="wxYaoBody">
                             <div style={{marginBottom: 16, display: 'flex', flex: 1}}>
                                 <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>

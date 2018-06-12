@@ -11,8 +11,10 @@ import {
     Col,
     Modal,
     Radio,
-    Table
+    Table,
+    Breadcrumb
 } from 'antd';
+import { Link } from 'react-router-dom';
 
 // const
 const RadioButton = Radio.Button;
@@ -71,6 +73,10 @@ export default class ClientSmsTempManage extends React.Component {
                 // 发送记录
                 this.props.history.push("/clientSmsRecord");
                 break;
+            case "4":
+                // 采购记录
+                this.props.history.push("/clientSmsBuyManage");
+                break;
             default:
                 break;
         }
@@ -108,8 +114,16 @@ export default class ClientSmsTempManage extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
+                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
+                        <div style={{marginTop: '-16px', marginBottom: '8px'}}>
+                            <Breadcrumb>
+                                <Breadcrumb.Item><Link to="/store">应用市场</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item><Link to="/clientSmsTemplate">短信模板</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item>新建模板</Breadcrumb.Item>
+                             </Breadcrumb>
+                        </div>
                         <div className="wxYaoBody">
                             <div className="wxYaoTitle">
                                 <div className="wxYaoTitleArea">
@@ -154,7 +168,12 @@ export default class ClientSmsTempManage extends React.Component {
                                     </Col>
                                     <Col span={10}>
                                         <a href="javascript:;" onClick={this.onImportLib.bind(this)}>导入快捷模板库</a>
-                                        <TextArea rows={4}></TextArea>
+                                        <div style={{position: 'relative'}}>
+                                            <TextArea rows={4}></TextArea>
+                                            <div style={{position: 'absolute', right: 22, bottom: 1, color: 'rgba(0,0,0,0.45)'}}>
+                                                退订回TD
+                                            </div>
+                                        </div>
                                     </Col>
                                 </Row>
                                 <Row gutter={8} style={{display: 'flex', alignItems: 'center'}}>
@@ -163,11 +182,11 @@ export default class ClientSmsTempManage extends React.Component {
                                     <Col span={10}>
                                         <div style={{color: 'rgba(0,0,0,0.45)'}}>
                                             <div>
-                                                <span>当前共计</span>
-                                                <span style={{color: 'red'}}>8</span>
+                                                <span>可带链接，建议转化为短链接发送。当前共计</span>
+                                                <span style={{color: 'red'}}>10</span>
                                                 <span>个字（含签名），含有变量的情况下以实际发送长度为准</span>
                                             </div>
-                                            <div>70字以内计为一条（含70字），超过70字，以67字/条计费</div>
+                                            <div>70字以内计为一条（含70字），超过70字，以67字/条计费，会员服务模板尾部自动会加入“退订回TD”</div>
                                         </div>
                                     </Col>
                                 </Row>

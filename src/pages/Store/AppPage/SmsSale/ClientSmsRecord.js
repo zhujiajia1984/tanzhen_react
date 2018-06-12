@@ -15,8 +15,10 @@ import {
     Modal,
     Badge,
     Divider,
-    Icon
+    Icon,
+    Breadcrumb
 } from 'antd';
+import { Link } from 'react-router-dom';
 
 // const
 const Search = Input.Search;
@@ -69,6 +71,9 @@ export default class ClientSmsRecord extends React.Component {
                 // 发送记录
                 this.props.history.push("/clientSmsRecord");
                 break;
+            case "4":
+                // 采购记录
+                this.props.history.push("/clientSmsBuyManage");
             default:
                 break;
         }
@@ -115,8 +120,15 @@ export default class ClientSmsRecord extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
+                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
+                        <div style={{marginTop: '-16px', marginBottom: '8px'}}>
+                            <Breadcrumb>
+                                <Breadcrumb.Item><Link to="/store">应用市场</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item>发送记录</Breadcrumb.Item>
+                             </Breadcrumb>
+                        </div>
                         <div className="wxYaoBody">
                             <div className="wxYaoTitle">
                                 <div className="wxYaoTitleArea">
