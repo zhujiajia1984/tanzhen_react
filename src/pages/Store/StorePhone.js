@@ -52,6 +52,13 @@ export default class StorePhone extends React.Component {
                     tag: '精准短信广告主',
                     icon: 'https://radar.weiquaninfo.cn/radar/assets/images/sms_icon.png'
                 },
+                {
+                    title: '微信摇一摇',
+                    desp: '打开蓝牙，摇出优惠',
+                    status: '已开通',
+                    tag: '微信摇一摇广告主',
+                    icon: 'https://radar.weiquaninfo.cn/radar/assets/images/wxyao_icon.png'
+                },
             ],
         }
     }
@@ -85,6 +92,10 @@ export default class StorePhone extends React.Component {
                 break;
             case "精准短信代理商":
                 this.props.history.push("/agentSmsSend");
+                break;
+            case "微信摇一摇广告主":
+                localStorage.setItem('wxYaoMenuKey', '1');
+                this.props.history.push("/wxYao");
                 break;
             default:
                 break;

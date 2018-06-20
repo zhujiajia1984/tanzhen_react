@@ -182,7 +182,7 @@ export default class ClientSmsEvent extends React.Component {
                 <Col span={10}>
                     <RadioGroup onChange={this.onChange.bind(this)} defaultValue="a">
                         <RadioButton value="a">全部人群</RadioButton>
-                        <RadioButton value="b">选择部分人群</RadioButton>
+                        <RadioButton value="b">自定义人群</RadioButton>
                     </RadioGroup>
                 </Col>
             </Row>
@@ -292,7 +292,6 @@ export default class ClientSmsEvent extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>
@@ -341,7 +340,7 @@ export default class ClientSmsEvent extends React.Component {
                             }
                             </div>
                             <Modal
-                                title="选择部分人群"
+                                title="自定义人群"
                                 visible={this.state.dlgVisible}
                                 onCancel={this.onCloseDlg.bind(this)}
                                 onOk={this.onConfirmDlg.bind(this)}

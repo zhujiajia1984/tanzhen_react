@@ -102,12 +102,26 @@ export default class ClientSmsRecord extends React.Component {
     }
 
     render() {
-        let smsSignTitle = <div>
-            <span>短信签名</span>
-            <span style={{marginLeft: 12, fontSize: 12 , color: 'rgba(0, 0, 0, 0.45)'}}>
-                显示在短信的【】中
-            </span>
-        </div>
+        const expandRowData = (
+            <div style={{fontSize: 14}}>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <div style={{fontWeight: 'bold'}}>
+                            发送内容：
+                        </div>
+                    </Col>
+                </Row>
+                <div className="wxYaolink">【新数网络】尊敬的用户，您创建的短信模板ID：{1}已通过审核，请登录雷达系统进行使用。</div>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <div style={{fontWeight: 'bold'}}>
+                            发送失败原因：
+                        </div>
+                    </Col>
+                </Row>
+                <div className="wxYaolink">超频发送</div>
+            </div>
+        )
         return (
             <PageLayout selMenu={['应用市场']} fullScreen={true} collapsed={true}
                 topTitle="精准短信" topHelpText="使用帮助" topHelpLink="/phoneAppDetail">
@@ -120,7 +134,6 @@ export default class ClientSmsRecord extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>
@@ -150,77 +163,19 @@ export default class ClientSmsRecord extends React.Component {
                                     <span style={{marginLeft: 24}}>接收号码/接收MAC/活动名称：</span>
                                     <Input style={{width: 180}}/>
                                     <Button type="primary" style={{marginLeft: 24}}>查询</Button>
-                                    <span style={{marginLeft: 12}}>总计费条数：30000</span>
                                 </div>
                             </div>
-                            <Modal
-                                title={this.state.dlgTitle}
-                                visible={this.state.dlgVisible}
-                                onCancel={this.onCloseDlg.bind(this)}
-                                onOk={this.onConfirmDlg.bind(this)}
-                                cancelText="取消"
-                                okText="确定"
-                                confirmLoading={this.state.dlgConfirmLoading}
-                            >
-                                {
-                                    (this.state.dlgTitle == "短信签名") &&
-                                    <div>
-                                        <Row gutter={8}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                                短信签名：
-                                            </Col>
-                                            <Col span={18}>
-                                                <Input />
-                                            </Col>
-                                        </Row>
-                                        <Row gutter={8} style={{marginTop: 8}}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                            </Col>
-                                            <Col span={18}>
-                                                <span style={{color: 'rgba(0, 0, 0, 0.45)'}}>
-                                                    公司或品牌名称，限2-12个字符，不能为纯数字。
-                                                </span>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                }
-                                {
-                                    (this.state.dlgTitle == "审核结果通知手机号设置") &&
-                                    <div>
-                                        <Row gutter={8}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                                手机号：
-                                            </Col>
-                                            <Col span={18}>
-                                                <Input />
-                                            </Col>
-                                        </Row>
-                                        <Row gutter={8} style={{marginTop: 24}}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                                验证码：
-                                            </Col>
-                                            <Col span={12} style={{paddingRight: 0}}>
-                                                <Input />
-                                            </Col>
-                                            <Col span={6} style={{paddingLeft: 0}}>
-                                                <Button type="primary" ghost style={{width: '100%'}}>
-                                                    获取验证码
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                        <Row gutter={8} style={{marginTop: 24}}>
-                                            <Col span={6} style={{textAlign: 'right'}}>
-                                                登录密码：
-                                            </Col>
-                                            <Col span={18}>
-                                                <Input />
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                }
-                            </Modal>
+                            <div>
+                                <span>总发送人数：5000</span>
+                                <span style={{marginLeft: 24}}>发送成功人数：4500</span>
+                                <span style={{marginLeft: 24}}>发送失败人数：500</span>
+                                <span style={{marginLeft: 24}}>总计费条数：6000</span>
+                            </div>
                             <Table dataSource={this.state.data}
                                 bordered={false}
+                                expandedRowRender={(record) => {
+                                    return expandRowData;
+                                }}
                                 locale={{filterConfirm: '确认', filterReset: '清空', emptyText: '暂无数据'}}
                             >
                                 <Column
@@ -262,13 +217,6 @@ export default class ClientSmsRecord extends React.Component {
                                             return <Badge status="success" text="成功" />;
                                         }
                                     }}
-                                />
-                                <Column
-                                    title="发送内容"
-                                    dataIndex="content"
-                                    render={(text)=>(
-                                        <div title="显示全部内容">{text}</div>
-                                    )}
                                 />
                                 <Column
                                     title="计费条数"

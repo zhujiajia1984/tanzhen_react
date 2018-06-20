@@ -114,7 +114,6 @@ export default class ClientSmsTempManage extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>

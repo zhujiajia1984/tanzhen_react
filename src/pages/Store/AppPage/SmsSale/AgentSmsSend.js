@@ -251,6 +251,9 @@ export default class AgentSmsSend extends React.Component {
                                 <Column
                                     title="发送成功人数"
                                     dataIndex="successNumber"
+                                    sorter={(a, b)=>{
+                                        return (a.sendNumber - b.sendNumber);
+                                    }}
                                 />
                                 <Column
                                     title="计费条数"

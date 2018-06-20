@@ -247,6 +247,9 @@ export default class MarketSmsSend extends React.Component {
                                 <Column
                                     title="发送人群数量"
                                     dataIndex="sendNumber"
+                                    sorter={(a, b)=>{
+                                        return (a.sendNumber - b.sendNumber);
+                                    }}
                                 />
                                 <Column
                                     title="发送成功人数"

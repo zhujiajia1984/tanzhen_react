@@ -140,7 +140,6 @@ export default class ClientSmsSend extends React.Component {
                         <Menu.Item key="1">短信活动</Menu.Item>
                         <Menu.Item key="2">短信模板</Menu.Item>
                         <Menu.Item key="3">发送记录</Menu.Item>
-                        <Menu.Item key="4">采购记录</Menu.Item>
                     </Menu>
                     <div className="wxYaoContent">
                         <div style={{marginTop: '-16px', marginBottom: '8px'}}>
@@ -254,6 +253,9 @@ export default class ClientSmsSend extends React.Component {
                                 <Column
                                     title="发送人群数量"
                                     dataIndex="sendNumber"
+                                    sorter={(a, b)=>{
+                                        return (a.sendNumber - b.sendNumber);
+                                    }}
                                 />
                                 <Column
                                     title="发送成功人数"
